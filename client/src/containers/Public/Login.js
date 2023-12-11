@@ -127,7 +127,7 @@ const Login = () => {
   return (
     <div className="bg-white w-[600px] mx-auto my-10  p-[30px] pb-[100px] rounded-md shadow-sm flex flex-col gap-1">
       <span className="mb-2 text-2xl font-semibold">
-        {isRegister ? "Đăng ký tài khoản" : "Đăng nhập"}
+        {isRegister ? "Tạo tài khoản" : "Đăng nhập"}
       </span>
       <div className="flex flex-col w-full gap-5">
         {isRegister && (
@@ -158,7 +158,7 @@ const Login = () => {
           keyPayload="password"
         />
         <Button
-          text={isRegister ? "Đăng ký tài khoản" : "Đăng nhập"}
+          text={isRegister ? "Tạo tài khoản" : "Đăng nhập"}
           textColor="text-white"
           bgColor="bg-secondary1"
           fullWidth

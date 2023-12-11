@@ -31,16 +31,17 @@ const Header = () => {
     <div className="w-3/4">
       <div className="flex items-center justify-between w-full">
         <Link to="/">
-          <img
+          {/* <img
             src={logo}
             alt="logo"
             className="w-[240px] h-[70px] object-contain"
-          />
+          /> */}
+          Hustcare
         </Link>
         <div className="flex items-center gap-1">
           {!isLoggedIn && (
             <div className="flex items-center gap-1">
-              <small className="">Phòng trọ 123 xin chào !</small>
+              <small className="">Hustcare xin chào !</small>
               <Button
                 text={"Đăng nhập"}
                 textColor="text-white"

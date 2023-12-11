@@ -21,8 +21,8 @@ const Home = () => {
       <div className="flex flex-col items-start justify-start w-3/4">
         <Outlet />
       </div>
-      <Intro />
-      <ContactBot contactButton />
+      {/* <Intro /> */}
+      {/* <ContactBot contactButton /> */}
     </div>
   );
 };

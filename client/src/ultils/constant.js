@@ -28,8 +28,8 @@ export const path = {
 
 }
 export const textHomePage = {
-    HOME_TITLE: 'Kênh thông tin Phòng trọ số 2 Việt Nam',
-    HOME_DISCRIPTION: 'Kênh thông tin Phòng Trọ số 2 Việt Nam - Website đăng tin cho thuê phòng trọ, nhà nguyên căn, căn hộ, hiệu quả nhanh chống và cực kỳ hữu ích với số lượng tin đăng và lượt truy cập lớn.'
+    HOME_TITLE: 'Tìm phòng trọ',
+    HOME_DISCRIPTION: 'Tìm phòng trọ - Website đăng tin cho thuê phòng trọ, nhà nguyên căn, căn hộ, hiệu quả nhanh chống và cực kỳ hữu ích với số lượng tin đăng và lượt truy cập lớn.'
 }
 export const locationPhongtro = [
     {

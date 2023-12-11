@@ -7,7 +7,7 @@ const Contact = () => {
         <div className="p-5 flex flex-col gap-3">
           <h1>Hướng dẫn đăng tin</h1>
           <span>
-            Chào bạn, sau đây là hướng dẫn sử dụng cho thành viên website phongtro123.com.
+            Chào bạn, sau đây là hướng dẫn sử dụng cho thành viên website phongtro.
           </span>
           <span>
             Nếu bạn chưa có tài khoản, hãy <Link to='/login' className='text-blue-600'>đăng ký tại đây</Link> trước khi bắt đầu đăng tin mới.

@@ -8,7 +8,7 @@ const client = require('twilio')(accountSid, authToken);
 
 const sendOTP = (code, receiver) => {
     client.messages
-        .create({ body: `PHÒNG TRỌ 123 - Your code: ${code}`, from: process.env.TWILIO_PHONE_NUMBER, to: receiver })
+        .create({ body: `PHÒNG TRỌ - Your code: ${code}`, from: process.env.TWILIO_PHONE_NUMBER, to: receiver })
         .then(message => console.log(message.status))
         .catch(err => console.log(err))
 }

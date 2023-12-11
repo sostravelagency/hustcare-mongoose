@@ -108,7 +108,8 @@ const Search = () => {
         <button
           onClick={handleSearch}
           type="button"
-          className="outline-none py-1 px-2 flex-1 bg-secondary1 rounded-lg text-white font-medium text-sm flex items-center justify-center gap-1"
+          className="outline-none py-1 px-2 flex-1 rounded-lg text-white font-medium text-sm flex items-center justify-center gap-1"
+          style={{backgroundColor: "rgb(218, 75, 39)"}}
         >
           <CiSearch />
           Tìm kiếm
