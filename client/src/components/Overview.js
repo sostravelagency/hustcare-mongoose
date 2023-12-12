@@ -27,7 +27,7 @@ const Overview = ({setPayload, payload, invalidFields, setInvalidFields}) => {
     <div>
       <h2 className="font-medium text-2xl">Thông tin mô tả</h2>
       <div className="w-full flex flex-col gap-2">
-        <div className="w-1/2">
+        <div className="w-full">
           <Select 
             value={payload.categoryCode} setValue={setPayload} name='categoryCode' 
             label='Loại chuyên mục' 
@@ -36,7 +36,7 @@ const Overview = ({setPayload, payload, invalidFields, setInvalidFields}) => {
             setInvalidFields={setInvalidFields}
           />
         </div>
-        <InputReadOnly label='Tiêu đề' id='overview-title' 
+        <InputReadOnly label='Tiêu đề tin đăng' id='overview-title' 
           name='title' value={payload.title} setValue={setPayload} 
           invalidFields={invalidFields}
           setInvalidFields={setInvalidFields}
@@ -60,7 +60,7 @@ const Overview = ({setPayload, payload, invalidFields, setInvalidFields}) => {
       </div>
 
       <div className="w-full flex flex-col gap-2 mt-2">
-        <div className="w-1/2">
+        <div className="w-full">
           <InputReadOnly small='Nhập đầy đủ số, ví dụ 1 triệu thì nhập là 1000000' label='Giá cho thuê' id='overview-price' unit='đồng' 
             value={payload.priceNumber} setValue={setPayload} 
             name='priceNumber'

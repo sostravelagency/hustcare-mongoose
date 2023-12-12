@@ -52,11 +52,13 @@ const DetailPost = () => {
     <div className="w-full flex gap-4 py-5 relative">
    {!checkStatus(posts[0]?.overviews?.expire?.split(' ')[3] || posts[0]?.overviews?.expire ) &&  <div className="absolute z-20 w-full h-full bg-overlay-70 text-white text-6xl flex items-start justify-center pt-10">Bài viết đã hết hạn !</div>}
    { posts[0]?.users?.name === null ?  <div className="absolute z-20 w-full h-full bg-overlay-70 text-white text-4xl text-center pt-10">Tài khoản của người đăng bài đã bị xóa ! Hãy xem bài đăng khác !</div> : ''}
-      <div className="w-[65%] bg-white rounded-md shadow-md ">
+      <div className="w-[100%] bg-white rounded-md shadow-md ">
         <SliderCustom images={posts && posts.length > 0 && JSON.parse(posts[0]?.images?.image)}/>
         <div className='px-5'>
+          <div className="text-center mt-2 mb-2"><h1 className="text-2xl font-bold text-red-600">{posts[0]?.title}</h1></div>
+          <BoxInfo user={posts[0]?.users} postId = {postId} />
           <div className="my-5 flex flex-col gap-1">
-            <h1 className="text-2xl font-bold text-red-600">{posts[0]?.title}</h1>
+            
             <div className="flex gap-2">
               <span>Chuyên mục:</span>
               <span onClick={()=>{
@@ -166,11 +168,11 @@ const DetailPost = () => {
           </div>
         </div>
       </div>
-      <div className="w-[35%] flex flex-col gap-4">
+      {/* <div className="w-[35%] flex flex-col gap-4">
         <BoxInfo user={posts[0]?.users} postId = {postId} />
         <RelativePost />
         <RelativePost newPost />
-      </div>
+      </div> */}
     </div>
     
     </>

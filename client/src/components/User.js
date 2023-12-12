@@ -6,8 +6,6 @@ import avatar from '../assets/avatar.jpg'
 
 const User = () => {
     const {userData } = useSelector(state => state.user)
-
-
   return (
     <div className="flex items-center gap-2 ">
         <img src={userData?.avatar || avatar} alt="avatar" className="w-[40px] h-[40px] object-cover rounded-full"/>

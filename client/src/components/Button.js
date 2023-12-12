@@ -4,7 +4,7 @@ const Button = ({text, textColor, bgColor, IcAfter,IcBefore, onClick, fullWidth}
   return (
     <button
         type='button'
-        className={`p-2 ${textColor} ${fullWidth && 'w-full'} outline-none rounded-md hover:underline flex items-center justify-center gap-1`}
+        className={`p-2 ${textColor} ${fullWidth && 'w-max'} outline-none rounded-md hover:underline flex items-center justify-center gap-1`}
         onClick={onClick}
         style={{backgroundColor: "#da4b27"}}
     >

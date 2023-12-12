@@ -13,10 +13,11 @@ const Home = () => {
   return (
     <div className="w-screen flex flex-col items-center bg-[#f5f5f5]">
       <Header></Header>
-      <Navigation></Navigation>
+      {/* <Navigation></Navigation> */}
       {location.pathname !== `/${path.FORGOT_PASSWORD}` &&
         location.pathname !== `/${path.HUONG_DAN_SU_DUNG}` &&
         location.pathname !== `/${path.POST_LIKE}` &&
+        location.pathname !== `/${path.SEARCH}` &&
         !location.pathname?.includes(path.DETAIL) && <Search />}
       <div className="flex flex-col items-start justify-start w-3/4">
         <Outlet />

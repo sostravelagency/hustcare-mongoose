@@ -10,7 +10,7 @@ const InputReadOnly = ({label, id, readOnly, unit, half, value, setValue, name, 
             <input  
                 value={value || ''} 
                 id={id} 
-                className = {`${readOnly ? 'bg-gray-200' : ''} ${half ? 'w-1/2' : 'flex-auto'}   outline-none border border-gray-400 rounded-sm py-1 px-2 focus:border-blue-500`} 
+                className = {`${readOnly ? 'bg-gray-200' : ''} ${half ? 'w-full' : 'flex-auto'}   outline-none border border-gray-400 rounded-sm py-1 px-2 focus:border-blue-500`} 
                 type = {password || 'text' }
                 readOnly={readOnly ? true : false}
                 onChange={(e) => setValue(prev => ({...prev, [name]: e.target.value}))}

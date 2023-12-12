@@ -92,7 +92,7 @@ const Address = ({ setPayload, invalidFields, setInvalidFields}) => {
     },[province, district,ward, addAddress])
   return (
     <div>
-        <h2 className="font-medium text-2xl">Địa chỉ cho thuê</h2>
+        <h2 className="font-bold text-3xl">Địa chỉ phòng trọ</h2>
         <div className="flex flex-col gap-4">
             <div className="flex items-center gap-4" >
                 <Select

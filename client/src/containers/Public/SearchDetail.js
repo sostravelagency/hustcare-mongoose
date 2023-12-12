@@ -17,22 +17,22 @@ const SearchDetail = () => {
     <div className="w-full flex flex-col gap-3 mt-3">
       <div>
         <h1 className="font-bold text-2xl mb-2">
-          {location.state?.titleSearch || 'Kết quả tìm kiém'}
+          {'Kết quả tìm kiếm'}
         </h1>
         <span className="text-base">
           {`${location.state?.titleSearch || ' '} phòng mới xây, chính chủ gần chợ, trường học, siêu thị, cửa hàng tiện lợi !`}
         </span>
       </div>
       <div className="w-full flex gap-3">
-        <div className="w-[70%]">
+        <div className="w-[100%]">
           <List />
           <Pagination />
         </div>
-        <div className="w-[30%]  flex flex-col gap-4 justify-start items-center">
+        {/* <div className="w-[30%]  flex flex-col gap-4 justify-start items-center">
           <ItemSidebar content={prices} type='priceCode' title="Xem theo giá" isDouble />
           <ItemSidebar content={areas} type='areaCode' title="Xem theo diện tích" isDouble />
           <RelativePost newPost/>
-        </div>
+        </div> */}
       </div>
     </div>
   )

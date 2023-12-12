@@ -29,38 +29,40 @@ const BoxInfo = ({user,postId}) => {
         }
     }
   return (
-    <div className='w-full bg-[#febb02] border rounded-lg flex flex-col items-center p-4 gap-2' >
-        <img src={avatar || user?.avatar} className='w-[80px] h-[80px] object-cover rounded-full outline-none' />
-        <span className='font-semibold text-lg'>{user?.name}</span>
-        <span className='text-sm italic'>{user?.phone}</span>
-        <a href={`tel:${user?.phone}`} className='w-full'>
-            <Button 
-                text='Số điện thoại'
-                bgColor='bg-[#16c784]'
-                textColor='text-white font-bold text-lg hover:bg-[#13bb7b]'
-                fullWidth
-                IcBefore={BsTelephoneFill}
-            />
-        </a>
-        <a href={`https://zalo.me/${user?.zalo || user?.phone}`} className='w-full' target="_blank">
-            <Button 
-                text='Liên hệ Zalo'
-                bgColor='bg-white'
-                textColor='font-bold text-lg'
-                fullWidth
-                // IcBefore={SiZalo}
-            />
-        </a>
-        <Button 
-                text='Yêu thích'
-                bgColor='bg-white'
-                textColor='font-bold text-lg'
-                fullWidth
-                IcBefore={isLike ? RiHeartFill : RiHeartLine}
-                onClick={() => {
-                    handleClickHeart()                    
-                }}
-            />
+    <div className="w-full flex justify-center">
+        <div className='border rounded-lg flex flex-col items-center p-4 gap-2 w-max' >
+            <img src={avatar || user?.avatar} className='w-[80px] h-[80px] object-cover rounded-full outline-none' />
+            <span className='font-semibold text-lg'>Liên hệ chủ trọ</span>
+            <span className='text-sm italic'>{user?.phone}</span>
+            <a href={`tel:${user?.phone}`} className=''>
+                <Button 
+                    text='Số điện thoại'
+                    bgColor='bg-[#16c784]'
+                    textColor='text-white font-bold text-lg hover:bg-[#13bb7b]'
+                    fullWidth
+                    IcBefore={BsTelephoneFill}
+                />
+            </a>
+            {/* <a href={`https://zalo.me/${user?.zalo || user?.phone}`} className='w-full' target="_blank">
+                <Button 
+                    text='Liên hệ Zalo'
+                    bgColor='bg-white'
+                    textColor='font-bold text-lg'
+                    fullWidth
+                    IcBefore={SiZalo}
+                />
+            </a> */}
+            {/* <Button 
+                    text='Yêu thích'
+                    bgColor='bg-white'
+                    textColor='font-bold text-lg'
+                    fullWidth
+                    IcBefore={isLike ? RiHeartFill : RiHeartLine}
+                    onClick={() => {
+                        handleClickHeart()                    
+                    }}
+                /> */}
+        </div>
     </div>
   )
 }

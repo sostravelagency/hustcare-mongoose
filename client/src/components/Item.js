@@ -60,30 +60,30 @@ const Item = ({
     moment(datetime, formatDate).isSameOrAfter(new Date().toDateString());
 
   return (
-    <div className="relative flex w-full p-4 border-t border-orange-500">
+    <div className="relative flex w-[25%] p-4 border-t border-orange-500 flex-col">
       <Link
         to={`${path.DETAIL}${formatVietnameseToString(
           title?.replaceAll("/", "")
         )}/${id}`}
-        className="w-[35%] "
+        className="w-[100%] "
       >
-        <div className="grid grid-cols-2 gap-[2px]   w-full">
+        <div className="w-full">
           {images.length > 0 &&
             images
-              .filter((i, index) => indexs.some((i) => i === index))
+              .filter((_i, index) => indexs.some((i) => i === index))
               ?.map((i, number) => {
                 return (
                   <img
                     key={number}
                     src={i}
                     alt="preview"
-                    className="w-[130px] h-[135px] object-cover"
+                    className="w-full aspect-square object-cover"
                   />
                 );
               })}
-          <span className="absolute px-2 text-sm text-white bg-gray-500 rounded-lg bottom-5 left-5">
+          {/* <span className="absolute px-2 text-sm text-white bg-gray-500 rounded-lg bottom-5 left-5">
             {`${images.length} ảnh`}
-          </span>
+          </span> */}
         </div>
       </Link>
       {isLoggedIn && (
@@ -100,21 +100,21 @@ const Item = ({
           )}
         </span>
       )}
-      <div className="w-[65%] pl-2 relative">
+      <div className="w-[100%] relative">
         {!checkStatus(
           overviews?.expire?.split(" ")[3] || overviews?.expire
         ) && (
-          <div className="absolute flex items-center justify-center w-full h-full text-3xl text-white z-1 bg-overlay-70">
+          <div className="absolute flex items-center justify-center w-full h-full text-3xl text-white z-1 bg-overlay-70 p-2">
             Bài viết đã hết hạn !
           </div>
         )}
 
-        <div className="flex ">
+        <div className="flex" style={{height: 56}}>
           <Link
             to={`${path.DETAIL}${formatVietnameseToString(
               title?.replaceAll("/", "")
             )}/${id}`}
-            className="text-xl text-red-500 hover:underline cursor:pointer"
+            className="text-xl text-red-500 hover:underline cursor:pointer w-full overflow-hidden text-ellipsis" style={{maxWidth: "100%"}}
           >
             {handleStar(+star).length > 0 &&
               handleStar(+star).map((star, number) => {
@@ -125,31 +125,31 @@ const Item = ({
         </div>
         <div className="my-2 ">
           <div className="flex items-center justify-between my-2">
-            <div className="text-lg font-semibold text-green-700 whitespace-nowrap">
+            {/* <div className="text-lg font-semibold text-green-700 whitespace-nowrap">
               Giá: {attributes?.price}
-            </div>
+            </div> */}
             <div className="italic">Diện tich: {attributes?.acreage}</div>
           </div>
-          <div className="my-2 italic font-bold ">
+          <div className="my-2 italic font-bold " style={{height: 48}}>
             {`${address.split(",")[address.split(",").length - 2]}${
               address.split(",")[address.split(",").length - 1]
             }`}
           </div>
-          <div className="item-discription">{description}</div>
+          <div className="item-discription" style={{height: 48}}>{description}</div>
           <div className="flex justify-between mt-4">
             <div className="flex items-center gap-1">
-              <img
+              {/* <img
                 className="w-[30px] h-[30px] object-cover rounded-full"
                 src="https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg"
                 alt="avata"
-              />
-              <span className="text-sm">
+              /> */}
+              {/* <span className="text-sm">
                 {user.name
                   ? user.positionCode !== "P2"
                     ? user?.name
                     : `${user?.name} (đã bị khóa quyền đăng bài)`
                   : "Tài khoản đã bị xóa ! Vui lòng không xem bài đăng này"}
-              </span>
+              </span> */}
             </div>
             <div className="flex gap-2">
               {user.phone && (
@@ -158,11 +158,11 @@ const Item = ({
                     type="button"
                     className="px-2 text-sm text-white bg-blue-600 rounded-lg"
                   >
-                    {`Gọi ${user?.phone}`}
+                    {`${user?.phone}`}
                   </button>
                 </a>
               )}
-              {user.zalo && (
+              {/* {user.zalo && (
                 <a href={`https://zalo.me/${user?.zalo}`}>
                   <button
                     type="button"
@@ -171,7 +171,7 @@ const Item = ({
                     Nhắn Zalo
                   </button>
                 </a>
-              )}
+              )} */}
             </div>
           </div>
         </div>
