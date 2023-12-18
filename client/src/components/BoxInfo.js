@@ -5,10 +5,13 @@ import icons from '../ultils/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPostLike } from '../store/actions'
 import { apiCreatePostLike, apiDeletePostLike } from '../services'
+import { Link } from 'react-router-dom'
+import BookingPopup from './BookingPopup'
 
 const {BsTelephoneFill, SiZalo, RiHeartFill, RiHeartLine} = icons
 
 const BoxInfo = ({user,postId}) => {
+    const [open, setOpen]= useState(false)
     const dispatch = useDispatch()
     const {postLike} = useSelector(state => state.post)
     const [isLike, setIsLike] = useState(false)
@@ -43,15 +46,18 @@ const BoxInfo = ({user,postId}) => {
                     IcBefore={BsTelephoneFill}
                 />
             </a>
-            {/* <a href={`https://zalo.me/${user?.zalo || user?.phone}`} className='w-full' target="_blank">
+            <Link to="/" onClick={(e)=> {
+                e.preventDefault()
+                setOpen(true)
+
+            }} className='w-full' target="_blank">
                 <Button 
-                    text='Liên hệ Zalo'
+                    text='Hẹn xem phòng'
                     bgColor='bg-white'
-                    textColor='font-bold text-lg'
+                    textColor='text-white font-bold text-lg hover:bg-[#13bb7b]'
                     fullWidth
-                    IcBefore={SiZalo}
                 />
-            </a> */}
+            </Link>
             {/* <Button 
                     text='Yêu thích'
                     bgColor='bg-white'
@@ -63,6 +69,7 @@ const BoxInfo = ({user,postId}) => {
                     }}
                 /> */}
         </div>
+        <BookingPopup open={open} setOpen={setOpen} />
     </div>
   )
 }

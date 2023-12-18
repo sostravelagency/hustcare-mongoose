@@ -10,6 +10,12 @@ const menuManage = [
         icon: <TfiPencilAlt color='#f73859' />
     },
     {
+        id: 7,
+        text: 'Đăng tin tìm bạn ở ghép',
+        path: '/he-thong/tao-moi-bai-dang?type=multiple',
+        icon: <TfiPencilAlt color='#f73859' />
+    },
+    {
         id: 2,
         text: 'Quản lí tin đăng',
         path: '/he-thong/quan-ly-bai-dang',
