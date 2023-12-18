@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Post.belongsTo(models.Image, {foreignKey: 'imageId',targetKey: 'id',as: 'images'})
-      Post.belongsTo(models.Attribute, {foreignKey: 'attributeId',targetKey: 'id',as: 'attributes'})
-      Post.belongsTo(models.User, {foreignKey: 'userId',targetKey: 'id',as: 'users'})
-      Post.belongsTo(models.Overview, {foreignKey: 'overviewId',targetKey: 'id',as: 'overviews'})
-
+      Post.belongsTo(models.Image, { foreignKey: 'imageId', targetKey: 'id', as: 'images' })
+      Post.belongsTo(models.Attribute, { foreignKey: 'attributeId', targetKey: 'id', as: 'attributes' })
+      Post.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'id', as: 'users' })
+      Post.belongsTo(models.Overview, { foreignKey: 'overviewId', targetKey: 'id', as: 'overviews' })
+      Post.hasMany(models.Feedback, { foreignKey: 'postId', as: 'feedbacks' });
 
     }
   }
