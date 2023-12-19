@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 18, 2023 at 08:55 PM
+-- Generation Time: Dec 19, 2023 at 10:19 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -108,14 +108,25 @@ CREATE TABLE `Comment` (
 --
 
 CREATE TABLE `Feedbacks` (
-  `id` varchar(255) NOT NULL,
+  `id` int(255) NOT NULL,
   `userId` varchar(255) DEFAULT NULL,
   `postId` varchar(255) DEFAULT '0',
   `titlePost` varchar(255) DEFAULT NULL,
+  `rating` int(11) NOT NULL,
   `content` longtext DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Feedbacks`
+--
+
+INSERT INTO `Feedbacks` (`id`, `userId`, `postId`, `titlePost`, `rating`, `content`, `createdAt`, `updatedAt`) VALUES
+(1, 'user123', '156a2341-66fb-443b-bc9c-27685554007e', 'áas', 4, 'sáasasa', '2023-12-19 20:54:31', '2023-12-19 20:54:31'),
+(2, '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', '156a2341-66fb-443b-bc9c-27685554007e', 'saasas', 3, 'asasas', '2023-12-19 21:03:31', '2023-12-19 21:03:31'),
+(3, '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', '156a2341-66fb-443b-bc9c-27685554007e', 'sa', 4, 'aaaaa', '2023-12-19 21:18:44', '2023-12-19 21:18:44'),
+(4, '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', '156a2341-66fb-443b-bc9c-27685554007e', 'saas', 3, 'asas', '2023-12-19 21:19:03', '2023-12-19 21:19:03');
 
 -- --------------------------------------------------------
 
@@ -489,6 +500,12 @@ ALTER TABLE `Areas`
 --
 ALTER TABLE `Categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `Feedbacks`
+--
+ALTER TABLE `Feedbacks`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Labels`
