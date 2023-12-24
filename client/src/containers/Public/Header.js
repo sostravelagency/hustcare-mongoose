@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import logo from "../../assets/logo.PNG";
+import logo from "../../assets/logo.png";
 import { Button, User } from "../../components";
 import icons from "../../ultils/icons";
 import { useNavigate, Link, NavLink } from "react-router-dom";
@@ -48,12 +48,12 @@ const Header = () => {
       <div className="w-3/4">
         <div className="flex items-center justify-between w-full">
           <Link to="/">
-            {/* <img
+            <img
               src={logo}
               alt="logo"
               className="w-[240px] h-[70px] object-contain"
-            /> */}
-            Hustcare
+            />
+            {/* Hustcare */}
           </Link>
           <div className="flex items-center gap-1">
             {!isLoggedIn && (
