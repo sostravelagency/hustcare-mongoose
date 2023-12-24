@@ -2,8 +2,11 @@ import React, { useState, useEffect, memo } from 'react'
 import { getCodes, getCodesArea, getNumbersArea } from '../ultils/Common/getCodes'
 import { AddressSearch } from './index'
 import { apiGetPublicProvinces, apiGetPublicDistricts } from '../services'
+import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 
 const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax, defaultText }) => {
+  const [list, setList] = useState([])
+  const utilities = [{ id: 1, val: "Wifi" }, { id: 2, val: "Tủ lạnh" }, { id: 3, val: "Máy giặt" }, { id: 4, val: "Camera" }, { id: 5, val: "Chỗ gửi xe" }, { id: 6, val: "Nóng lạnh" }, { id: 7, val: "Tivi" }]
   const percent1 = (arrMinMax?.priceArr !== undefined && arrMinMax?.areaArr !== undefined) ? name === 'price' ? arrMinMax?.priceArr[0] : name === 'area' ? arrMinMax?.areaArr[0] : 0 : 0
   const percent2 = (arrMinMax?.priceArr !== undefined && arrMinMax?.areaArr !== undefined) ? name === 'price' ? arrMinMax?.priceArr[1] : name === 'area' ? arrMinMax?.areaArr[1] : 100 : 100
   // name === 'price' ? arrMinMax?.priceArr[1] : name === 'area' ? arrMinMax?.areaArr[1] :
@@ -155,7 +158,7 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
         {name === 'province' && <div className='p-5 justify-center flex gap-4 w-full'>
           <select className='outline-none border border-gray-500 px-4 py-2 rounded-md' value={provinceData.selected} onChange={e => setProvinceData(prev => ({ ...prev, selected: e.target.value }))} >
             <option value="">Chọn Tỉnh/Thành phố</option>
-            {provinceData.data?.map(item => (
+            {provinceData.data?.filter(item => parseInt(item.province_id) === 1)?.map(item => (
               <option key={item.province_id} value={item.province_id}>{item.province_name}</option>
             ))}
           </select>
@@ -272,6 +275,31 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
 
           </div>
 
+        }
+        {
+          name === "utilities" && <>
+            <div className='pt-2 pb-2 pl-2'>
+              <FormGroup>
+                {
+                  utilities?.map((item, key) =>
+                    <FormControlLabel key={key} control={<Checkbox
+                      checked={list?.filter(item2 => item2.id === item.id)?.length > 0}
+                      onChange={(e) => {
+                        if (list?.find(item2 => item2.id === item.id)) {
+                          setList(list?.filter(item2 => item2.id !== item.id))
+                        }
+                        else {
+                          setList(prev => ([...prev, { id: item.id, val: item.val }]));
+                        }
+                      }}
+                      inputProps={{ 'aria-label': 'controlled' }}
+                      label="aaa"
+                    />} label={item.val} />
+                  )
+                }
+              </FormGroup>
+            </div>
+          </>
         }
         {(name === 'price' || name === 'area') &&
           <button

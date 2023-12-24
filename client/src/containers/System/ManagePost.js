@@ -201,7 +201,7 @@ const ManagePost = () => {
                         <tr key={item.id} className="border px-1">
                             <td className="border text-center">{item?.overviews?.code}</td>
                             <td className="border p-1  text-center flex items-center justify-center">
-                                <img className="w-[100px] h-[100px] object-cover" src={JSON.parse(item.images.image)[0]} alt='anh bai dang'/>
+                                <img className="w-[100px] h-[100px] object-cover" src={JSON.parse(item.images.image)?.[0]} alt='anh bai dang'/>
                             </td>
                             <td className="border text-center">{item?.title}</td>
                             <td className="border text-center">{item?.attributes?.price}</td>

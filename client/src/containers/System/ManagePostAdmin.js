@@ -333,7 +333,7 @@ const ManagePostAdmin = () => {
                     {item.users.name || "Tài khoản tác giả đã xóa"}
                   </td>
                   <td className="p-4 border">
-                    {item.overviews.created.split(" ")[3]}
+                    {item?.overviews.created?.split(" ")[3]}
                   </td>
                   <td className="p-4 border">
                     {isEdit === item.id ? (
@@ -350,7 +350,7 @@ const ManagePostAdmin = () => {
                       />
                     ) : (
                       <span>
-                        {item.overviews.expire.split(" ")[3] ||
+                        {item.overviews.expire?.split(" ")[3] ||
                           item.overviews.expire}
                       </span>
                     )}
@@ -433,7 +433,7 @@ const ManagePostAdmin = () => {
                           setIsEdit(item.id);
                           setPayload({
                             id: item.id,
-                            expire: item.overviews.expire.split(" ")[3],
+                            expire: item.overviews.expire?.split(" ")[3],
                             title: item.title,
                             oid: item.overviews.id,
                             status: item.status,

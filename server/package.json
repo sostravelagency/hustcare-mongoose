@@ -21,6 +21,7 @@
     "nodemon": "^2.0.20",
     "nsfwjs": "^2.4.2",
     "sequelize": "^6.25.5",
+    "socket.io": "^4.7.2",
     "twilio": "^3.83.3",
     "uuid": "^9.0.0"
   },

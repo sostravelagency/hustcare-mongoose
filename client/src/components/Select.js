@@ -1,6 +1,6 @@
 import React,{memo} from 'react'
 
-const Select = ({label,options,value, setValue, type, reset, name, invalidFields, setInvalidFields}) => {
+const Select = ({label,options,value, setValue, type, reset, name, invalidFields, setInvalidFields, is_province}) => {
 
   const handleErrorText = () => {
     let nameInvalid = invalidFields?.find(item => item.name === name)
@@ -21,7 +21,17 @@ const Select = ({label,options,value, setValue, type, reset, name, invalidFields
       
         id="select-address" className="outline-none border border-gray-400 py-1 px-2 w-full rounded-md">
         <option value="">{`--Chọn ${label}`}</option>
-        {options?.map(item => {
+        {is_province && options?.filter(item=> parseInt(item.province_id) === 1)?.map(item => {
+          return (
+            <option
+              key={type === 'province' ? item.province_id : type === 'district' ? item.district_id : type === 'ward' ? item.ward_id : item?.code}
+              value={type === 'province' ? item.province_id : type === 'district' ? item.district_id : type === 'ward' ? item.ward_id : item?.code}
+            >
+              {type === 'province' ? item.province_name : type === 'district' ? item.district_name : type === 'ward' ? item.ward_name : item?.value}
+            </option>
+          )
+        })}
+        {!is_province && options?.map(item => {
           return (
             <option
               key={type === 'province' ? item.province_id : type === 'district' ? item.district_id : type === 'ward' ? item.ward_id : item?.code}

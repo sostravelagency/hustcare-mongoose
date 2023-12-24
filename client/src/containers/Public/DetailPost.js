@@ -165,12 +165,12 @@ const DetailPost = () => {
             </div>
             <WriteReview postId={postId} setChange={setChange} />
             <ReviewList postId={postId} change={change} />
-            <div className='flex flex-col gap-1 py-2'>
+            {/* <div className='flex flex-col gap-1 py-2'>
               <h2 className='text-xl font-bold mt-2'>Bản đồ</h2>
               <span className='italic'>Địa chỉ: {posts[0]?.address}</span>
               <Map address={posts[0]?.address} />
               <span>Bạn đang xem nội dung tin đăng: <span className="italic">{posts[0]?.title} - Mã tin {posts[0]?.attributes?.hashtag}</span> Nếu bạn có phản hồi với tin đăng này (báo xấu, tin đã cho thuê, không liên lạc được,...), vui lòng thông báo để PhòngTrọ123 có thể xử lý.</span>
-            </div>
+            </div> */}
           </div>
         </div>
         {/* <div className="w-[35%] flex flex-col gap-4">

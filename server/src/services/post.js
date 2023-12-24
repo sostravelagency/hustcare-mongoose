@@ -34,10 +34,10 @@ export const getPosts = () => {
                     {
                         model: db.User,
                         as: 'users',
-                        attributes: ['name','phone','zalo','fbUrl']
+                        attributes: ['name', 'phone', 'zalo', 'fbUrl']
                     },
                 ],
-                attributes: ['id', 'title', 'star', 'address', 'description','status']
+                attributes: ['id', 'title', 'star', 'address', 'description', 'status']
             })
             resolve({
                 err: response ? 0 : 1,
@@ -52,17 +52,17 @@ export const getPosts = () => {
 }
 
 
-export const getPostsLimitService = ({ page,limit,order, address, ...query }, { priceNumber, areaNumber }) => {
+export const getPostsLimitService = ({ page, limit, order, address, ...query }, { priceNumber, areaNumber }) => {
     return new Promise(async (resolve, reject) => {
         try {
             let offset = !page || +page <= 1 ? 0 : (+page - 1)
-            const queries = { raw: true, nest: true}
+            const queries = { raw: true, nest: true }
             const lim = +limit || +process.env.LIMIT
             queries.limit = lim
             queries.offset = +lim * offset
             if (priceNumber) query.priceNumber = { [Op.between]: priceNumber }
             if (areaNumber) query.areaNumber = { [Op.between]: areaNumber }
-            if (order) {queries.order = [order]} else {queries.order = [['createdAt', 'DESC']] }
+            if (order) { queries.order = [order] } else { queries.order = [['createdAt', 'DESC']] }
             if (address) query.address = {
                 [Op.or]: [
                     { [Op.substring]: address[0] },
@@ -97,11 +97,11 @@ export const getPostsLimitService = ({ page,limit,order, address, ...query }, { 
                     {
                         model: db.User,
                         as: 'users',
-                        attributes: ['id','avatar','name','phone','zalo','fbUrl','positionCode']
+                        attributes: ['id', 'avatar', 'name', 'phone', 'zalo', 'fbUrl', 'positionCode']
                     },
                 ],
-                attributes: ['id','title','star','address','categoryCode','description','priceCode','status'],
-             })
+                attributes: ['id', 'title', 'star', 'address', 'categoryCode', 'description', 'priceCode', 'status'],
+            })
             resolve({
                 err: response ? 0 : 1,
                 msg: response ? 'oke !' : 'Fail get all posts service!',
@@ -139,7 +139,7 @@ export const getNewPostsService = () => {
                         }
                     },
                 ],
-                attributes: ['id', 'title', 'star', 'createdAt','status'],
+                attributes: ['id', 'title', 'star', 'createdAt', 'status'],
                 offset: 0,
                 limit: 10,
                 order: [['createdAt', 'DESC']]
@@ -159,14 +159,17 @@ export const getNewPostsService = () => {
 
 export const createNewPostsService = (body, userId) => {
     return new Promise(async (resolve, reject) => {
+
         try {
             const attributeId = generateId()
             const imageId = generateId()
             const overviewId = generateId()
             const labelCode = generateCode(body.label)
-            const hashtag = `#${Math.floor(Math.random() * Math.pow(10,6))}`
+            const hashtag = `#${Math.floor(Math.random() * Math.pow(10, 6))}`
             const currentDate = generateDate()
-        
+            const arrUtilities = []
+            body.utilities.map(item => arrUtilities.push(item.val))
+
             await db.Post.create({
                 id: generateId(),
                 title: body.title || null,
@@ -183,8 +186,10 @@ export const createNewPostsService = (body, userId) => {
                 priceCode: body.priceCode || null,
                 provinceCode: body?.province?.includes('Thành phố') ? generateCode(body?.province?.replace('Thành phố', '')) : generateCode(body?.province?.replace('Tỉnh', '')),
                 priceNumber: body.priceNumber,
-                areaNumber: body.areaNumber
+                areaNumber: body.areaNumber,
+                utilities: arrUtilities.join("|")
             })
+
             await db.Attribute.create({
                 id: attributeId,
                 price: +body.priceNumber < 1 ? `${+body.priceNumber * 1000000} đồng/tháng` : `${body.priceNumber} triệu/tháng`,
@@ -237,22 +242,22 @@ export const createNewPostsService = (body, userId) => {
         } catch (error) {
             reject(error);
         }
-    }) 
+    })
 }
 
 
 export const getPostsLimitAdminService = (page, query, id) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         // console.log({priceNumber,areaNumber});
         try {
-            let offset = !page || +page <= 1? 0 : (+page - 1)
-            const queries = {...query,userId: id}
+            let offset = !page || +page <= 1 ? 0 : (+page - 1)
+            const queries = { ...query, userId: id }
 
             let response = await db.Post.findAndCountAll({
                 where: queries,
                 raw: true,
                 nest: true,
-                order: [['createdAt','DESC']],
+                order: [['createdAt', 'DESC']],
                 include: [
                     {
                         model: db.Image,
@@ -262,40 +267,40 @@ export const getPostsLimitAdminService = (page, query, id) => {
                     {
                         model: db.Attribute,
                         as: 'attributes',
-                        attributes: ['price','acreage','hashtag','published']
+                        attributes: ['price', 'acreage', 'hashtag', 'published']
                     },
                     {
                         model: db.User,
                         as: 'users',
-                        attributes: ['name','phone','zalo']
+                        attributes: ['name', 'phone', 'zalo']
                     },
                     {
                         model: db.Overview,
                         as: 'overviews',
-            
+
                     },
                 ],
                 // attributes: ['id','title','star','address','description','priceCode'],
-                offset: offset * +process.env.LIMIT, 
+                offset: offset * +process.env.LIMIT,
                 limit: +process.env.LIMIT
-             })
-             resolve({
+            })
+            resolve({
                 err: response ? 0 : 1,
-                msg: response ? 'oke !': 'Fail get all posts service!',
+                msg: response ? 'oke !' : 'Fail get all posts service!',
                 response
 
-             })
+            })
         } catch (error) {
             reject(error);
         }
-    }) 
+    })
 }
 
-export const updatePost = ({ postId,overviewId, attributeId, imageId ,... body}) => {
-    return new Promise(async(resolve, reject) => {
+export const updatePost = ({ postId, overviewId, attributeId, imageId, ...body }) => {
+    return new Promise(async (resolve, reject) => {
         try {
             const labelCode = generateCode(body.label)
-            
+
             await db.Post.update({
                 title: body.title || null,
                 labelCode: labelCode,
@@ -304,41 +309,41 @@ export const updatePost = ({ postId,overviewId, attributeId, imageId ,... body})
                 description: JSON.stringify(body.description) || null,
                 status: 'unChecked',
                 areaCode: body.areaCode || null,
-                priceCode: body.priceCode || null,  
-                provinceCode: body?.province?.includes('Thành phố') ? generateCode(body?.province?.replace('Thành phố','')) : generateCode(body?.province?.replace('Tỉnh','')),
+                priceCode: body.priceCode || null,
+                provinceCode: body?.province?.includes('Thành phố') ? generateCode(body?.province?.replace('Thành phố', '')) : generateCode(body?.province?.replace('Tỉnh', '')),
                 priceNumber: body.priceNumber,
-                areaNumber : body.areaNumber
-             },{
-                where: {id: postId}
-             })
-             await db.Attribute.update({
+                areaNumber: body.areaNumber
+            }, {
+                where: { id: postId }
+            })
+            await db.Attribute.update({
                 price: +body.priceNumber < 1 ? `${+body.priceNumber * 1000000} đồng/tháng` : `${body.priceNumber} triệu/tháng`,
                 acreage: `${body.areaNumber} m2`,
-            },{
-                where: {id: attributeId}
-             })
+            }, {
+                where: { id: attributeId }
+            })
             await db.Image.update({
-                image :  JSON.stringify(body.images)
-            },{
-                where: {id: imageId}
-             })
+                image: JSON.stringify(body.images)
+            }, {
+                where: { id: imageId }
+            })
             await db.Overview.update({
                 area: body.area,
                 type: body.category,
                 target: body.target,
-            },{
-                where: {id: overviewId}
-             })
+            }, {
+                where: { id: overviewId }
+            })
             await db.Province.findOrCreate({
                 where: {
                     [Op.or]: [
-                        { value: body?.province?.replace('Thành phố ','') },
-                        { value: body?.province?.replace('Tỉnh ','') }
-                      ]
+                        { value: body?.province?.replace('Thành phố ', '') },
+                        { value: body?.province?.replace('Tỉnh ', '') }
+                    ]
                 },
                 defaults: {
-                    code: body?.province?.includes('Thành phố') ? generateCode(body?.province?.replace('Thành phố','')) : generateCode(body?.province?.replace('Tỉnh','')),
-                    value: body?.province?.includes('Thành phố') ? body?.province?.replace('Thành phố ','') : body?.province?.replace('Tỉnh ','')
+                    code: body?.province?.includes('Thành phố') ? generateCode(body?.province?.replace('Thành phố', '')) : generateCode(body?.province?.replace('Tỉnh', '')),
+                    value: body?.province?.includes('Thành phố') ? body?.province?.replace('Thành phố ', '') : body?.province?.replace('Tỉnh ', '')
                 }
             })
 
@@ -351,33 +356,33 @@ export const updatePost = ({ postId,overviewId, attributeId, imageId ,... body})
                     value: body.label
                 }
             })
-             resolve({
+            resolve({
                 err: 0,
                 msg: 'update oke !',
 
-             })
+            })
         } catch (error) {
             reject(error);
         }
-    }) 
+    })
 }
 
 
-export const deletePost = ( postId ) => {
-    return new Promise(async(resolve, reject) => {
+export const deletePost = (postId) => {
+    return new Promise(async (resolve, reject) => {
         // console.log({priceNumber,areaNumber});
         try {
             let response = await db.Post.destroy({
-                where: {id : postId},
-             })
-             resolve({
+                where: { id: postId },
+            })
+            resolve({
                 err: response > 0 ? 0 : 1,
-                msg: response > 0 ? 'delete oke !': 'Fail delete posts service!',
-             })
+                msg: response > 0 ? 'delete oke !' : 'Fail delete posts service!',
+            })
         } catch (error) {
             reject(error);
         }
-    }) 
+    })
 }
 export const deletePostAdmin = (id) => {
     return new Promise(async (resolve, reject) => {
@@ -399,13 +404,13 @@ export const updatePostAdmin = ({ id, ...data }) => {
         try {
             let response = await Promise.all([
                 db.Post.update(
-                    { 
-                        title: data.title ,
+                    {
+                        title: data.title,
                         status: data.status,
                         star: data.star,
-                    }, 
+                    },
                     {
-                    where: { id }
+                        where: { id }
                     }
                 ),
                 db.Overview.update({ expire: moment(data.expire).format('DD/MM/YYYY') }, {
@@ -424,43 +429,43 @@ export const updatePostAdmin = ({ id, ...data }) => {
 }
 
 
-export const createPostLike = (id, postId ) => {
-    return new Promise(async(resolve, reject) => {
+export const createPostLike = (id, postId) => {
+    return new Promise(async (resolve, reject) => {
         // console.log({priceNumber,areaNumber});
         try {
             let response = await db.PostLike.create({
                 userId: id,
                 postId
-             })
-             resolve({
+            })
+            resolve({
                 err: 0,
                 msg: 'postlike oke !',
                 response
-             })
+            })
         } catch (error) {
             reject(error);
         }
-    }) 
+    })
 }
 
-export const deletePostLike = (id, postId ) => {
-    return new Promise(async(resolve, reject) => {
+export const deletePostLike = (id, postId) => {
+    return new Promise(async (resolve, reject) => {
         // console.log({priceNumber,areaNumber});
         try {
             let response = await db.PostLike.destroy({
                 where: {
-                    userId : id,
+                    userId: id,
                     postId: postId
                 },
-             })
-             resolve({
+            })
+            resolve({
                 err: response > 0 ? 0 : 1,
-                msg: response > 0 ? 'delete oke !': 'Fail delete posts service!',
-             })
+                msg: response > 0 ? 'delete oke !' : 'Fail delete posts service!',
+            })
         } catch (error) {
             reject(error);
         }
-    }) 
+    })
 }
 
 export const getPostLike = (id) => {

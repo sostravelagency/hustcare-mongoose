@@ -69,7 +69,7 @@ const BoxInfo = ({user,postId}) => {
                     }}
                 /> */}
         </div>
-        <BookingPopup open={open} setOpen={setOpen} />
+        <BookingPopup open={open} setOpen={setOpen} user={user} />
     </div>
   )
 }

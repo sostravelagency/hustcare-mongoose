@@ -19,6 +19,17 @@ const verifyToken = (req, res, next) => {
     })
 }
 
+export const verifyTokenSocket = (token) => {
+    let accessToken = token
+    console.log("access token", accessToken)
+    let data= {}
+    // console.log(accessToken)
+    jwt.verify(accessToken, process.env.SECRET_KEY, (err, user) => {
+        data= user
+    })
+    return data
+}
+
 export const isAdmin = (req, res, next) => {
     const { roleCode } = req.user
     if (roleCode !== 'R1') return res.status(401).json({

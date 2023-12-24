@@ -16,7 +16,7 @@ import { resetDataEdit } from '../../store/actions'
 const { RiDeleteBin6Line } = icons
 
 const CreatePost = ({isEdit}) => {
-
+  const [listUtilities, setListUtilities]= useState([])
   const {prices, areas, categories, provinces} = useSelector(state => state.app)
   const {userData} = useSelector(state => state.user)
   const dispatch = useDispatch()
@@ -27,6 +27,7 @@ const CreatePost = ({isEdit}) => {
 
   const [payload, setPayload] = useState((callback) => { 
     const initData = {
+      utilities: listUtilities,
       categoryCode : dataEdit?.categoryCode || '',
       title: dataEdit?.title || '',
       priceNumber: dataEdit?.priceNumber * 1000000 || '',
@@ -86,6 +87,7 @@ const CreatePost = ({isEdit}) => {
     // console.log(priceCode, areaCode );
     let finalPayload = {
       ...payload,
+      utilities: listUtilities,
       priceCode ,
       areaCode,
       userId: userData.id,
@@ -163,7 +165,7 @@ const CreatePost = ({isEdit}) => {
     <div className="flex w-[60%]">
       <div className="py-4 flex flex-col gap-4 flex-auto ">
         <Address invalidFields={invalidFields} setInvalidFields={setInvalidFields} setPayload={setPayload} />
-        <Overview invalidFields={invalidFields} setInvalidFields={setInvalidFields} payload={payload} setPayload={setPayload}/>
+        <Overview invalidFields={invalidFields} setInvalidFields={setInvalidFields} payload={payload} setPayload={setPayload} setList={setListUtilities} list={listUtilities} />
         <div className='w-full' >
           <h2 className="font-medium text-2xl">Hình ảnh</h2>
           <small>Cập nhật hình ảnh rõ gàng sẽ giúp bạn cho thuê nhanh hơn</small>
@@ -209,7 +211,6 @@ const CreatePost = ({isEdit}) => {
             textColor='text-white'
             bgColor='bg-secondary1' 
             onClick = {handleSubmit}
-            
           />
         </div>
         <div className='w-full flex justify-center'>

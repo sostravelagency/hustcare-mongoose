@@ -12,7 +12,7 @@ const Search = () => {
 
   const [isShowModal, setIsShowModal] = useState(false)
   const [content, setContent] = useState([])
-  const { provinces, areas, prices, categories } = useSelector(state => state.app)
+  const { provinces, areas, prices, categories, utilities } = useSelector(state => state.app)
   const [name, setName] = useState('')
   const [queries, setQueries] = useState({})
   const [arrMinMax, setArrMinMax] = useState({})
@@ -104,12 +104,20 @@ const Search = () => {
           <SearchItem IconBefore={<RiCropLine />} IconAfter={<BsChevronRight color='rgb(156, 163, 175)' />}
             text={queries.area} defaultText={'Chọn diện tích'} />
         </div>
+        <div className="cursor-pointer flex-1"
+          onClick={() => {
+            handleShowModal(utilities, 'utilities', 'Chọn tiện ích')
+          }}
+        >
+          <SearchItem IconBefore={<RiCropLine />} IconAfter={<BsChevronRight color='rgb(156, 163, 175)' />}
+            text={queries.area} defaultText={'Chọn tiện ích'} />
+        </div>
 
         <button
           onClick={handleSearch}
           type="button"
           className="outline-none py-1 px-2 flex-1 rounded-lg text-white font-medium text-sm flex items-center justify-center gap-1"
-          style={{backgroundColor: "rgb(218, 75, 39)"}}
+          style={{ backgroundColor: "rgb(218, 75, 39)" }}
         >
           <CiSearch />
           Tìm kiếm

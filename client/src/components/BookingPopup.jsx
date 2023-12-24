@@ -12,11 +12,15 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import { TimePicker } from "@mui/x-date-pickers";
-import swal from "sweetalert"
+import swal from "sweetalert";
+import { AppContext } from "../App";
 
 export default function BookingPopup(props) {
+  const { socket, userId }= React.useContext(AppContext)
+  const [name, setName] = React.useState("");
+  const [phone, setPhone] = React.useState("");
   const [value, setValue] = React.useState(dayjs("2022-04-17"));
-  const [value1, setValue1]= React.useState(dayjs("2022-04-17"))
+  const [value1, setValue1] = React.useState(dayjs("2022-04-17"));
   const handleClose = () => {
     props?.setOpen(false);
   };
@@ -45,6 +49,10 @@ export default function BookingPopup(props) {
               >
                 <div>Họ tên:</div>
                 <TextField
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
                   style={{ width: 300, height: 40, margin: "12px 0" }}
                 />
               </div>
@@ -60,6 +68,10 @@ export default function BookingPopup(props) {
               >
                 <div>Số điện thoại:</div>
                 <TextField
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
                   style={{ width: 300, height: 40, margin: "12px 0" }}
                 />
               </div>
@@ -109,10 +121,25 @@ export default function BookingPopup(props) {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Đóng</Button>
-            <Button onClick={()=> {
-                swal("Thông báo", "Đặt lịch xem phòng thành công", "success")
-                .then(()=> handleClose())
-            }} autoFocus>
+            <Button
+              onClick={() => {
+                const data = {
+                  name,
+                  phone,
+                  value: value.format("DD/MM/YYYY"),
+                  value1: value1.format("HH:mm"),
+                  userId: props?.user?.id
+                };
+                socket.emit("push_booking", {data})
+                console.log(data)
+                swal(
+                  "Thông báo",
+                  "Đặt lịch xem phòng thành công",
+                  "success"
+                ).then(() => handleClose());
+              }}
+              autoFocus
+            >
               Xác nhận
             </Button>
           </DialogActions>

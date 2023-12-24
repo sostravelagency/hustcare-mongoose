@@ -13,7 +13,7 @@ const Address = ({ setPayload, invalidFields, setInvalidFields}) => {
     const [ward, setWard] = useState('')
     const [province, setProvince] = useState('')
     const [district, setDistrict] = useState('')
-    const [addAddress, setAddAddress] = useState(dataEdit?.address?.split(',')[0] || '')
+    const [addAddress, setAddAddress] = useState(dataEdit?.address?.split(',')?.[0] || '')
     const [reset, setReset] = useState(false)
     const [readOnly, setReadOnly] = useState(false)
 
@@ -78,7 +78,7 @@ const Address = ({ setPayload, invalidFields, setInvalidFields}) => {
         !district && setWards([])
     },[district])
     useEffect(() => {
-        setAddAddress(dataEdit?.address?.split(',')[0] || '')
+        setAddAddress(dataEdit?.address?.split(',')?.[0] || '')
         // !ward ? setReset(true) : setReset(false)
         !ward ? setReadOnly(true) : setReadOnly(false)
     },[ward])
@@ -96,6 +96,7 @@ const Address = ({ setPayload, invalidFields, setInvalidFields}) => {
         <div className="flex flex-col gap-4">
             <div className="flex items-center gap-4" >
                 <Select
+                    is_province={true}
                     invalidFields={invalidFields}
                     setInvalidFields={setInvalidFields}
                     type='province'
