@@ -79,12 +79,6 @@ const Header = () => {
             )}
             {isLoggedIn && (
               <div className="relative flex items-center gap-1">
-                <NavLink
-                  to={"/"}
-                  className={({ isActive }) => (isActive ? active : notActive)}
-                >
-                  Trang chủ
-                </NavLink>
                 {categories.length > 0 &&
                   categories.map((item) => {
                     return (

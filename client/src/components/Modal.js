@@ -13,7 +13,7 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
   const [persent1, setPersent1] = useState(percent1)
   const [persent2, setPersent2] = useState(percent2)
   const [activeE1, setActiveE1] = useState('')
-  const [provinceData, setProvinceData] = useState({ selected: null, data: [] })
+  const [provinceData,  setProvinceData] = useState({ selected: null, data: [] })
   const [districtData, setDistrictData] = useState({ selected: null, data: [] })
   const [reset, setReset] = useState(false)
   useEffect(() => {
@@ -132,6 +132,10 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
     handleSubmit(e, { address: `${districtData.selected || ''}, ${p || ''}`, province: `${districtData.selected || ''}, ${p || ''}` })
   }
 
+  useEffect(()=> {
+    setProvinceData(prev => ({ ...prev, selected: "01" }))
+  }, [])
+
   // console.log({ provinceData, districtData })
   return (
     <div
@@ -156,7 +160,7 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
           >{'<-  '} {name === 'category' ? 'Chọn loại' : name === 'province' ? 'Chọn tỉnh thành' : name === 'price' ? 'Chọn giá' : 'Chọn diện tích'}</span>
         </div>
         {name === 'province' && <div className='p-5 justify-center flex gap-4 w-full'>
-          <select className='outline-none border border-gray-500 px-4 py-2 rounded-md' value={provinceData.selected} onChange={e => setProvinceData(prev => ({ ...prev, selected: e.target.value }))} >
+          <select style={{opacity: 0, visibility: "hidden", width: 0}} className='outline-none border border-gray-500 px-4 py-2 rounded-md' value={provinceData.selected} onChange={e => setProvinceData(prev => ({ ...prev, selected: e.target.value }))} >
             <option value="">Chọn Tỉnh/Thành phố</option>
             {provinceData.data?.filter(item => parseInt(item.province_id) === 1)?.map(item => (
               <option key={item.province_id} value={item.province_id}>{item.province_name}</option>
