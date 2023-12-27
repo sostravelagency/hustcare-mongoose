@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 19, 2023 at 10:19 PM
+-- Generation Time: Dec 27, 2023 at 05:20 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -58,6 +58,8 @@ CREATE TABLE `Attributes` (
 
 INSERT INTO `Attributes` (`id`, `price`, `acreage`, `published`, `hashtag`, `createdAt`, `updatedAt`) VALUES
 ('02955fe2-a99d-4610-abdc-bcae9bf2e0f1', '1 triệu/tháng', '20 m2', '05/12/2023', '#844077', '2023-12-05 11:49:21', '2023-12-05 11:49:21'),
+('38c74aba-582f-4578-acb5-140450755d47', '1 triệu/tháng', '10 m2', '23/12/2023', '#864466', '2023-12-23 10:25:55', '2023-12-23 10:25:55'),
+('64e7c99b-0fe0-4292-b395-13e470c24c1a', '1 triệu/tháng', '10 m2', '23/12/2023', '#711395', '2023-12-23 10:20:14', '2023-12-23 10:20:14'),
 ('72f69ace-5526-47da-bbd2-207fbc30db95', '3 triệu/tháng', '20 m2', '07/06/2023', '#419359', '2023-06-07 14:22:21', '2023-06-07 14:22:21'),
 ('7a0f0e7f-0c64-456a-a64b-ad4dece96c16', '3 triệu/tháng', '20 m2', '07/06/2023', '#708717', '2023-06-07 14:20:25', '2023-06-07 14:20:25'),
 ('83b1eddf-d6c1-411f-9b04-58c0f9430373', '10 triệu/tháng', '50 m2', '19/12/2023', '#994393', '2023-12-18 19:03:46', '2023-12-18 19:03:46'),
@@ -146,11 +148,13 @@ CREATE TABLE `Images` (
 --
 
 INSERT INTO `Images` (`id`, `image`, `createdAt`, `updatedAt`) VALUES
+('02f612fa-37ac-44b3-8b1c-5a9b1a149a8d', '[\"https://res.cloudinary.com/djjv3stcm/image/upload/v1703326942/phongtro123/rxklfwwujyidceeliori.jpg\"]', '2023-12-23 10:25:55', '2023-12-23 10:25:55'),
 ('13e11421-68ca-4eb4-a6aa-405bffac1164', '[\"https://res.cloudinary.com/djjv3stcm/image/upload/v1686147546/phongtro123/sn7zthyznafnaefeeohb.png\",\"https://res.cloudinary.com/djjv3stcm/image/upload/v1686147613/phongtro123/z35smxpsan9erfzuajz0.jpg\"]', '2023-06-07 14:20:25', '2023-06-07 14:20:25'),
 ('3ffa01b8-9d4b-4d24-b5a7-c1989f6a8e41', '[\"https://res.cloudinary.com/djjv3stcm/image/upload/v1701776808/phongtro123/iz4ddmnlsdxvt7ola29v.jpg\"]', '2023-12-05 11:46:51', '2023-12-05 11:46:51'),
 ('91cba214-a377-4999-b065-9837befe397b', '[\"https://res.cloudinary.com/djjv3stcm/image/upload/v1686147742/phongtro123/ja9ok5afj7ebdjmoguhn.jpg\"]', '2023-06-07 14:22:21', '2023-06-07 14:22:21'),
 ('9fbf3ebf-b945-4a15-ab49-d1fc50705752', '[\"https://res.cloudinary.com/djjv3stcm/image/upload/v1702926223/phongtro123/eaar1ox4obdrjrbl3jjb.jpg\"]', '2023-12-18 19:03:46', '2023-12-18 19:03:46'),
-('cdb408dd-5def-4dab-b467-317984dc36e6', '[\"https://res.cloudinary.com/djjv3stcm/image/upload/v1701776959/phongtro123/v6d4o8hc1jahvuihhz3b.jpg\"]', '2023-12-05 11:49:21', '2023-12-05 11:49:21');
+('cdb408dd-5def-4dab-b467-317984dc36e6', '[\"https://res.cloudinary.com/djjv3stcm/image/upload/v1701776959/phongtro123/v6d4o8hc1jahvuihhz3b.jpg\"]', '2023-12-05 11:49:21', '2023-12-05 11:49:21'),
+('dff974ae-b3e4-42df-b121-c451e2252a9c', '[\"https://res.cloudinary.com/djjv3stcm/image/upload/v1703326528/phongtro123/b1rkdxfomqnw8zpoywpr.jpg\"]', '2023-12-23 10:20:14', '2023-12-23 10:20:14');
 
 -- --------------------------------------------------------
 
@@ -174,7 +178,9 @@ INSERT INTO `Labels` (`id`, `code`, `value`, `createdAt`, `updatedAt`) VALUES
 (1, 'OUOA', 'Phòng trọ Quận Cầu Giấy', '2023-06-07 14:20:25', '2023-06-07 14:20:25'),
 (2, 'OUOH', 'Phòng trọ Phường Quan Hoa', '2023-06-07 14:22:21', '2023-06-07 14:22:21'),
 (3, 'OTOI', 'Phòng trọ Quận Bắc Từ Liêm', '2023-12-05 11:46:51', '2023-12-05 11:46:51'),
-(4, 'OARN', 'Phòng trọ Quận Ba Đình', '2023-12-05 11:49:21', '2023-12-05 11:49:21');
+(4, 'OARN', 'Phòng trọ Quận Ba Đình', '2023-12-05 11:49:21', '2023-12-05 11:49:21'),
+(5, 'AHOĐ', 'Share phòng Huyện Hoài Đức', '2023-12-23 10:20:14', '2023-12-23 10:20:14'),
+(6, 'ACNI', 'Share phòng Quận Bắc Từ Liêm', '2023-12-23 10:25:55', '2023-12-23 10:25:55');
 
 -- --------------------------------------------------------
 
@@ -200,11 +206,13 @@ CREATE TABLE `Overviews` (
 --
 
 INSERT INTO `Overviews` (`id`, `code`, `area`, `type`, `target`, `bonus`, `created`, `expire`, `createdAt`, `updatedAt`) VALUES
+('487c9ba8-c18c-4c89-ad52-b02b72e918b2', '#864466', 'Share phòng Thành phố Hà Nội', 'Share phòng', 'Tất cả', 'Tin miễn phí', 'Thứ 7, 17:25 23/12/2023', 'Invalid date', '2023-12-23 10:25:55', '2023-12-23 10:32:37'),
 ('5806dcbb-9e46-40d6-8fb8-639cc64cb53b', '#549553', 'Phòng trọ Thành phố Hà Nội', 'Phòng trọ', 'Tất cả', 'Tin miễn phí', 'Thứ 3, 18:46 5/12/2023', 'Thứ 3, 18:46 12/12/2023', '2023-12-05 11:46:51', '2023-12-05 11:46:51'),
 ('639db6eb-0282-4eae-92ea-c9dd539a30bb', '#994393', 'Phòng trọ Thành phố Hà Nội', 'Phòng trọ', 'Tất cả', 'Tin miễn phí', 'Thứ 3, 2:3 19/12/2023', '30/12/2023', '2023-12-18 19:03:46', '2023-12-18 19:04:53'),
 ('65c5d64e-5dbc-44e2-b5a5-64093ea345ca', '#419359', 'Phòng trọQuận Cầu Giấy', 'Phòng trọ', 'Tất cả', 'Tin miễn phí', 'Thứ 4, 21:22 7/6/2023', '22/06/2023', '2023-06-07 14:22:21', '2023-06-07 15:22:25'),
 ('7e0a8b02-c7c3-4e5f-81cd-44ad93652ad3', '#844077', 'Phòng trọ Thành phố Hà Nội', 'Phòng trọ', 'Tất cả', 'Tin miễn phí', 'Thứ 3, 18:49 5/12/2023', '12/12/2023', '2023-12-05 11:49:21', '2023-12-05 11:50:30'),
-('ab5ca46a-efdc-4e29-baaf-9cbb525a73a5', '#708717', 'Phòng trọ Thành phố Hà Nội', 'Phòng trọ', 'Tất cả', 'Tin miễn phí', 'Thứ 4, 21:20 7/6/2023', 'Thứ 4, 21:20 14/6/2023', '2023-06-07 14:20:25', '2023-06-07 14:20:25');
+('ab5ca46a-efdc-4e29-baaf-9cbb525a73a5', '#708717', 'Phòng trọ Thành phố Hà Nội', 'Phòng trọ', 'Tất cả', 'Tin miễn phí', 'Thứ 4, 21:20 7/6/2023', 'Thứ 4, 21:20 14/6/2023', '2023-06-07 14:20:25', '2023-06-07 14:20:25'),
+('e97dbe28-2245-4090-bc62-adabb28f8239', '#711395', 'Share phòng Thành phố Hà Nội', 'Share phòng', 'Tất cả', 'Tin miễn phí', 'Thứ 7, 17:20 23/12/2023', 'Invalid date', '2023-12-23 10:20:14', '2023-12-23 10:32:40');
 
 -- --------------------------------------------------------
 
@@ -266,6 +274,7 @@ CREATE TABLE `Posts` (
   `imageId` varchar(255) DEFAULT NULL,
   `priceNumber` float DEFAULT NULL,
   `areaNumber` float DEFAULT NULL,
+  `utilities` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -274,11 +283,14 @@ CREATE TABLE `Posts` (
 -- Dumping data for table `Posts`
 --
 
-INSERT INTO `Posts` (`id`, `title`, `star`, `labelCode`, `address`, `attributeId`, `priceCode`, `areaCode`, `provinceCode`, `categoryCode`, `description`, `status`, `userId`, `overviewId`, `imageId`, `priceNumber`, `areaNumber`, `createdAt`, `updatedAt`) VALUES
-('156a2341-66fb-443b-bc9c-27685554007e', 'Cho thuê phòng', '3', 'OARN', 'số nhà 1,Phường Giảng Võ,Quận Ba Đình, Thành phố Hà Nội', '83b1eddf-d6c1-411f-9b04-58c0f9430373', NULL, NULL, 'NDOE', 'code123', '\"aa\"', 'checked', '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', '639db6eb-0282-4eae-92ea-c9dd539a30bb', '9fbf3ebf-b945-4a15-ab49-d1fc50705752', 10, 50, '2023-12-18 19:03:46', '2023-12-18 19:04:53'),
-('60cedf42-39c0-44de-a79e-e857ed4e3c9b', 'Cho thuê phòng trọ', '0', 'OTOI', 'số nhà 1,Phường Cổ Nhuế 1,Quận Bắc Từ Liêm, Thành phố Hà Nội', 'bc2724ec-f373-43ef-bceb-1f9aaef2541a', NULL, NULL, 'NDOE', 'code123', '\"Cho thuê phòng trọ full nội thất\"', 'unChecked', '32e6e1b1-893c-4c12-a4b2-6ea4c78ab8ea', '5806dcbb-9e46-40d6-8fb8-639cc64cb53b', '3ffa01b8-9d4b-4d24-b5a7-c1989f6a8e41', 1, 20, '2023-12-05 11:46:51', '2023-12-05 11:46:51'),
-('9cf8cb68-e7fd-4614-b3ea-0b3486e6d327', 'Cho thuê phòng trọ giá rẻ', '0', 'OUOH', 'số nhà 51, ngõ 165 đường dương quảng hàm,Phường Quan Hoa,Quận Cầu Giấy, Thành phố Hà Nội', '72f69ace-5526-47da-bbd2-207fbc30db95', NULL, NULL, 'NDOE', 'code123', '\"Cho thuê phòng trọ giá rẻ\"', 'checked', '457fb5e0-ac7c-43ec-ace1-74a4e8e7cd12', '65c5d64e-5dbc-44e2-b5a5-64093ea345ca', '91cba214-a377-4999-b065-9837befe397b', 3, 20, '2023-12-07 14:22:21', '2023-12-07 15:22:25'),
-('ebff2ccf-83a1-4186-80c9-10fc90bb3dde', 'Cho thuê phòng trọ', '0', 'OARN', 'Số nhà 1,Phường Cống Vị,Quận Ba Đình, Thành phố Hà Nội', '02955fe2-a99d-4610-abdc-bcae9bf2e0f1', NULL, NULL, 'NDOE', 'code123', '\"Cho thuê phòng trọ \"', 'checked', '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', '7e0a8b02-c7c3-4e5f-81cd-44ad93652ad3', 'cdb408dd-5def-4dab-b467-317984dc36e6', 1, 20, '2023-12-05 11:49:21', '2023-12-05 11:50:30');
+INSERT INTO `Posts` (`id`, `title`, `star`, `labelCode`, `address`, `attributeId`, `priceCode`, `areaCode`, `provinceCode`, `categoryCode`, `description`, `status`, `userId`, `overviewId`, `imageId`, `priceNumber`, `areaNumber`, `utilities`, `createdAt`, `updatedAt`) VALUES
+('156a2341-66fb-443b-bc9c-27685554007e', 'Cho thuê phòng', '3', 'OARN', 'số nhà 1,Phường Giảng Võ,Quận Ba Đình, Thành phố Hà Nội', '83b1eddf-d6c1-411f-9b04-58c0f9430373', NULL, NULL, 'NDOE', 'code123', '\"aa\"', 'checked', '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', '639db6eb-0282-4eae-92ea-c9dd539a30bb', '9fbf3ebf-b945-4a15-ab49-d1fc50705752', 10, 50, '', '2023-12-18 19:03:46', '2023-12-18 19:04:53'),
+('3590f3e0-5454-425b-9ec3-3ec4a5e8d81e', 'â', '0', 'AHOĐ', 'aa,Xã Cát Quế,Huyện Hoài Đức, Thành phố Hà Nội', '2e99de00-030b-4176-b05e-d930360fb637', NULL, NULL, 'NDOE', 'code 1234', '\"aa\"', 'unChecked', '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', '42d35f70-7df7-489b-a713-b407ac33c3c1', '43e153d1-cb57-4104-90f3-07313dfa0374', 1, 10, '123', '2023-12-23 10:19:58', '2023-12-23 10:19:58'),
+('4302c6ab-75fc-4cc5-bf86-ad4f867da866', 'aaa', '0', 'ACNI', 'aaaa,Phường Cổ Nhuế 2,Quận Bắc Từ Liêm, Thành phố Hà Nội', '38c74aba-582f-4578-acb5-140450755d47', NULL, NULL, 'NDOE', 'code 1234', '\"aaaaa\"', 'checked', '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', '487c9ba8-c18c-4c89-ad52-b02b72e918b2', '02f612fa-37ac-44b3-8b1c-5a9b1a149a8d', 1, 10, 'Tủ lạnh|Máy giặt|Nóng lạnh', '2023-12-23 10:25:55', '2023-12-23 10:32:37'),
+('60cedf42-39c0-44de-a79e-e857ed4e3c9b', 'Cho thuê phòng trọ', '0', 'OTOI', 'số nhà 1,Phường Cổ Nhuế 1,Quận Bắc Từ Liêm, Thành phố Hà Nội', 'bc2724ec-f373-43ef-bceb-1f9aaef2541a', NULL, NULL, 'NDOE', 'code123', '\"Cho thuê phòng trọ full nội thất\"', 'unChecked', '32e6e1b1-893c-4c12-a4b2-6ea4c78ab8ea', '5806dcbb-9e46-40d6-8fb8-639cc64cb53b', '3ffa01b8-9d4b-4d24-b5a7-c1989f6a8e41', 1, 20, '', '2023-12-05 11:46:51', '2023-12-05 11:46:51'),
+('819a3f5e-99e5-45af-8024-d636c0b2c7cd', 'â', '0', 'AHOĐ', 'aa,Xã Cát Quế,Huyện Hoài Đức, Thành phố Hà Nội', '64e7c99b-0fe0-4292-b395-13e470c24c1a', NULL, NULL, 'NDOE', 'code 1234', '\"aa\"', 'checked', '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', 'e97dbe28-2245-4090-bc62-adabb28f8239', 'dff974ae-b3e4-42df-b121-c451e2252a9c', 1, 10, '123', '2023-12-23 10:20:14', '2023-12-23 10:32:40'),
+('9cf8cb68-e7fd-4614-b3ea-0b3486e6d327', 'Cho thuê phòng trọ giá rẻ', '0', 'OUOH', 'số nhà 51, ngõ 165 đường dương quảng hàm,Phường Quan Hoa,Quận Cầu Giấy, Thành phố Hà Nội', '72f69ace-5526-47da-bbd2-207fbc30db95', NULL, NULL, 'NDOE', 'code123', '\"Cho thuê phòng trọ giá rẻ\"', 'checked', '457fb5e0-ac7c-43ec-ace1-74a4e8e7cd12', '65c5d64e-5dbc-44e2-b5a5-64093ea345ca', '91cba214-a377-4999-b065-9837befe397b', 3, 20, '', '2023-12-07 14:22:21', '2023-12-07 15:22:25'),
+('ebff2ccf-83a1-4186-80c9-10fc90bb3dde', 'Cho thuê phòng trọ', '0', 'OARN', 'Số nhà 1,Phường Cống Vị,Quận Ba Đình, Thành phố Hà Nội', '02955fe2-a99d-4610-abdc-bcae9bf2e0f1', NULL, NULL, 'NDOE', 'code123', '\"Cho thuê phòng trọ \"', 'checked', '6cfe9b27-63c1-4c89-a8d4-cbd8a35b9f62', '7e0a8b02-c7c3-4e5f-81cd-44ad93652ad3', 'cdb408dd-5def-4dab-b467-317984dc36e6', 1, 20, '', '2023-12-05 11:49:21', '2023-12-05 11:50:30');
 
 -- --------------------------------------------------------
 
@@ -511,7 +523,7 @@ ALTER TABLE `Feedbacks`
 -- AUTO_INCREMENT for table `Labels`
 --
 ALTER TABLE `Labels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `Positions`
