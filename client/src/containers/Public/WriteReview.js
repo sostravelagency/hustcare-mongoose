@@ -54,12 +54,12 @@ const WriteReview = ({ postId, setChange }) => {
                     onChange={(e) => setTitlePost(e.target.value)}
                 />
                 <div style={{ margin: "12px 0" }}></div>
-                <Rating
+                {/* <Rating
                     name="write-rating"
                     value={rating}
                     precision={0.5}
                     onChange={handleRatingChange}
-                />
+                /> */}
                 <div style={{ margin: "12px 0" }}></div>
                 <TextField
                     label="Nội dung đánh giá"

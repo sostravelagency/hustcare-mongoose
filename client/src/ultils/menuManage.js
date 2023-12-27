@@ -42,7 +42,7 @@ const menuManage = [
     },
     {
         id: 6,
-        text: 'Tin yêu thích',
+        text: 'Review',
         path: 'bai-dang-yeu-thich',
         icon: <RiHeartLine color='#f73859' />
 

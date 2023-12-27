@@ -4,7 +4,7 @@ import { AddressSearch } from './index'
 import { apiGetPublicProvinces, apiGetPublicDistricts } from '../services'
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 
-const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax, defaultText }) => {
+const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax, defaultText, setFilterUtilities }) => {
   const [list, setList] = useState([])
   const utilities = [{ id: 1, val: "Wifi" }, { id: 2, val: "Tủ lạnh" }, { id: 3, val: "Máy giặt" }, { id: 4, val: "Camera" }, { id: 5, val: "Chỗ gửi xe" }, { id: 6, val: "Nóng lạnh" }, { id: 7, val: "Tivi" }]
   const percent1 = (arrMinMax?.priceArr !== undefined && arrMinMax?.areaArr !== undefined) ? name === 'price' ? arrMinMax?.priceArr[0] : name === 'area' ? arrMinMax?.areaArr[0] : 0 : 0
@@ -291,9 +291,11 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
                       onChange={(e) => {
                         if (list?.find(item2 => item2.id === item.id)) {
                           setList(list?.filter(item2 => item2.id !== item.id))
+                          setFilterUtilities(list?.filter(item2 => item2.id !== item.id))
                         }
                         else {
                           setList(prev => ([...prev, { id: item.id, val: item.val }]));
+                          setFilterUtilities(prev => ([...prev, { id: item.id, val: item.val }]));
                         }
                       }}
                       inputProps={{ 'aria-label': 'controlled' }}
@@ -303,6 +305,13 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
                 }
               </FormGroup>
             </div>
+            <button
+            type='button'
+            className="w-full font-semibold bg-orange-400 absolute bottom-0 py-2 mt-5 rounded-bl-lg rounded-br-lg"
+            onClick={handleBeforeSubmit}
+          >
+            ÁP DỤNG
+          </button>
           </>
         }
         {(name === 'price' || name === 'area') &&

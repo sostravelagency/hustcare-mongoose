@@ -44,7 +44,7 @@ const ReviewList = ({ postId, change }) => {
         <div>
             <Typography variant="h5">Các đánh giá</Typography>
             <List>
-                {reviews.map((review) => (
+                {reviews?.reverse().map((review) => (
                     <div key={review.id} className={classes.reviewContainer}>
                         <ListItem style={{alignItems: "center", padding: 0}}>
                             <div className={classes.userContainer}>
@@ -53,7 +53,7 @@ const ReviewList = ({ postId, change }) => {
                                 )}
                                 <Typography variant="h6">{review.user ? review.user.name : 'Anonymous'}</Typography>
                             </div>
-                            <Rating name="read-only" value={review.rating} readOnly />
+                            {/* <Rating name="read-only" value={review.rating} readOnly /> */}
                             <Typography variant="h6">{review.titlePost}</Typography>
                         </ListItem>
                         <Typography>{review.content}</Typography>

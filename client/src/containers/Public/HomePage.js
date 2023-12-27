@@ -3,11 +3,13 @@ import { textHomePage } from '../../ultils/constant'
 import {Province, ItemSidebar,RelativePost } from '../../components'
 import { List, Pagination } from './index'
 import {useSelector} from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 
 const HomePage = () => {
   const {categories, prices, areas } = useSelector(state => state.app)
-
+  const location= useLocation()
+  console.log(location.pathname)
   
   
   // console.log(prices);

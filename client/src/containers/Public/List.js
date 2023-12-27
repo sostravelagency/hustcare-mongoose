@@ -10,6 +10,7 @@ import Search2 from "./Search2";
 const List = ({ categoryCode, postId }) => {
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.post);
+  const [listPosts, setListPosts]= useState([])
   const { postLike } = useSelector((state) => state.post);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const location = useLocation()
@@ -17,8 +18,21 @@ const List = ({ categoryCode, postId }) => {
   const [searchParams] = useSearchParams();
   const [sort, setSort] = useState(0);
   useEffect(() => {
+    
     dispatch(getPostLike());
   }, []);
+
+  useEffect(()=> {
+    if(location.pathname=== "/phong-tro") {
+      setListPosts(posts?.filter(item=> item.categoryCode=== "code123"))
+    }
+    else if(location.pathname=== "/share-phong") {
+      setListPosts(posts?.filter(item=> item.categoryCode=== "code 1234"))
+    }
+    else {
+      setListPosts(posts)
+    }
+  }, [posts, location.pathname])
 
   useEffect(() => {
     let params = [];
@@ -78,8 +92,8 @@ const List = ({ categoryCode, postId }) => {
           </span>
         </div>
         <div className="mt-3 flex flex-wrap">
-          {posts?.length > 0 ? (
-            posts
+          {listPosts?.length > 0 ? (
+            listPosts
               ?.filter((post) => post.status === "checked")
               ?.map((item) => {
                 return (

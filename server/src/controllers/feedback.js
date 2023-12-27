@@ -17,10 +17,11 @@ export const getReviewPost = async (req, res) => {
 export const createReview = async (req, res) => {
     try {
         const { id: userId } = req.user
+        console.log(userId)
         const { postId, titlePost, rating, content } = req.body;
 
         // Kiểm tra xem các trường cần thiết có được cung cấp không
-        if (!userId || !postId || !titlePost || !rating || !content) {
+        if (!userId || !postId || !titlePost || !content) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
@@ -29,7 +30,7 @@ export const createReview = async (req, res) => {
             userId,
             postId,
             titlePost,
-            rating,
+            rating: rating || 0,
             content,
         });
 

@@ -1,4 +1,4 @@
-import React,{memo} from 'react'
+import React,{memo, useEffect} from 'react'
 
 const Select = ({label,options,value, setValue, type, reset, name, invalidFields, setInvalidFields, is_province}) => {
 
@@ -8,6 +8,12 @@ const Select = ({label,options,value, setValue, type, reset, name, invalidFields
 
     return `${nameInvalid ? nameInvalid?.massage : ''}` || `${addressInvalid ? addressInvalid?.massage : ''}`
   }
+
+  useEffect(()=> {
+    if(is_province) {
+      setValue("01")
+    }
+  }, [is_province])
 
   return (
     <div className="flex flex-col gap-2 flex-1 mt-4">

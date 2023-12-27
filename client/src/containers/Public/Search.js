@@ -20,13 +20,14 @@ const Search = () => {
   const [defaultText, setDefaultText] = useState('')
   const navigate = useNavigate()
   const location = useLocation()
+  const [filterUtilities, setFilterUtilities]= useState([])
   // console.log(getCodePrice(prices))
   // console.log(getCodeArea(areas))
   useEffect(() => {
     if (!location.pathname.includes(path.SEARCH)) {
       setArrMinMax({})
       setQueries({})
-
+      
     }
   }, [location])
 
@@ -46,7 +47,7 @@ const Search = () => {
 
 
   const handleSearch = () => {
-    console.log(queries)
+    // console.log(queries)
     const queryCodes = Object.entries(queries).filter(item => item[0].includes('Number') || item[0].includes('address') || item[0].includes('Code')).filter(item => item[1])
     let queryCodesObj = {}
     queryCodes.forEach(item => { queryCodesObj[item[0]] = item[1] })
@@ -110,7 +111,7 @@ const Search = () => {
           }}
         >
           <SearchItem IconBefore={<RiCropLine />} IconAfter={<BsChevronRight color='rgb(156, 163, 175)' />}
-            text={queries.area} defaultText={'Chọn tiện ích'} />
+            text={filterUtilities?.map(item=> [item.val])?.join("|")} defaultText={'Chọn tiện ích'} />
         </div>
 
         <button
@@ -131,6 +132,7 @@ const Search = () => {
         queries={queries}
         setisShowModal={setIsShowModal}
         handleSubmit={handleSubmit}
+        setFilterUtilities={setFilterUtilities}
         defaultText={defaultText}
       />}
     </>
