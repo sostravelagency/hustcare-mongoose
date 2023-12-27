@@ -24,7 +24,7 @@ io.on("connection", socket=> {
     console.log(socket.id)
     socket.on("user", (data)=> {
         console.log("data", data)
-        if(data.token.length > 0) {
+        if(data?.token?.length > 0) {
             const id= verifyTokenSocket(data.token)
             socket.emit("userId", id.id)
         }
