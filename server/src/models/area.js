@@ -1,27 +1,10 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Area extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+const mongoose = require('mongoose');
 
-    }
-  }
-  Area.init({
-    code: DataTypes.STRING,
-    value: DataTypes.STRING,
+const areaSchema = new mongoose.Schema({
+    code: String,
+    value: String,
+});
 
+const AreaModel = mongoose.model('Area', areaSchema);
 
-  }, {
-    sequelize,
-    modelName: 'Area',
-  });
-  return Area;
-};
+export default AreaModel;

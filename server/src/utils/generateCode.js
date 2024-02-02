@@ -1,4 +1,5 @@
 require('dotenv').config()
+
 const generateCode = (value) => {
     let output = ''
     value = value

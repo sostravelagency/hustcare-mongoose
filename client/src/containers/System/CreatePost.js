@@ -24,6 +24,7 @@ const CreatePost = ({isEdit}) => {
 
 
   const {dataEdit} = useSelector(state => state.post)
+  console.log("dataEdit", dataEdit)
 
   const [payload, setPayload] = useState((callback) => { 
     const initData = {
@@ -32,7 +33,7 @@ const CreatePost = ({isEdit}) => {
       title: dataEdit?.title || '',
       priceNumber: dataEdit?.priceNumber * 1000000 || '',
       areaNumber: dataEdit?.areaNumber ||'',
-      images: dataEdit?.images?.image ? JSON.parse(dataEdit?.images?.image) : '',
+      images: dataEdit?.imageId?.[0]?.image ? JSON.parse(dataEdit?.imageId?.[0]?.image) : '',
       address: dataEdit?.address || '',
       priceCode: dataEdit?.priceCode || '',
       areaCode: dataEdit?.areaCode || '',
@@ -49,7 +50,7 @@ const CreatePost = ({isEdit}) => {
 
    useEffect(() => {
     if (dataEdit) {
-        let images = JSON.parse(dataEdit?.images?.image)
+        let images = JSON.parse(dataEdit?.imageId?.[0]?.image)
         images && setImagesPreview(images)
     }
    },[dataEdit])
@@ -104,7 +105,7 @@ const CreatePost = ({isEdit}) => {
     // console.log(invalidFields)
     if (result === 0) {
       if (isEdit && dataEdit) {
-        finalPayload.postId = dataEdit?.id
+        finalPayload.postId = dataEdit?._id
         finalPayload.attributeId = dataEdit?.attributeId
         finalPayload.overviewId = dataEdit?.overviewId
         finalPayload.imageId = dataEdit?.imageId

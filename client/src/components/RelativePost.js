@@ -26,7 +26,7 @@ const RelativePost = ({newPost}) => {
               title={item?.title}
               price={item?.attributes?.price}
               createAt= {item?.createdAt}
-              image={JSON.parse(item?.images?.image)}
+              image={item?.images?.image&& JSON.parse(item?.images?.image)}
               overviews={item?.overviews}
               id={item?.id}
               star={item?.star}

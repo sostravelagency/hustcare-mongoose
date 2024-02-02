@@ -90,7 +90,7 @@ export const getPostsLimitAdmin =  async(req, res) => {
 }
 
 export const updatePost =  async(req, res) => {
-    const { postId,overviewId, attributeId, imageId ,... payload} = req.body
+    const { postId,overviewId, attributeId, imageId ,...payload} = req.body
     const { id } = req.user
     try {
         if (!postId || !id || !imageId || !overviewId || !attributeId) return res.status(400).json({ 

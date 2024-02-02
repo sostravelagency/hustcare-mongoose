@@ -68,9 +68,8 @@ const Item = ({
         className="w-[100%] "
       >
         <div className="w-full">
-          {images.length > 0 &&
+          {images?.length > 0 &&
             images
-              .filter((_i, index) => indexs.some((i) => i === index))
               ?.map((i, number) => {
                 return (
                   <img
@@ -152,8 +151,8 @@ const Item = ({
               </span> */}
             </div>
             <div className="flex gap-2">
-              {user.phone && (
-                <a href={`tel:${user.phone}`}>
+              {user?.phone && (
+                <a href={`tel:${user?.phone}`}>
                   <button
                     type="button"
                     className="px-2 text-sm text-white bg-blue-600 rounded-lg"

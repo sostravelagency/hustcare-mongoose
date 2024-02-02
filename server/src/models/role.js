@@ -1,26 +1,16 @@
-'use strict';
-const {
-    Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-    class Role extends Model {
-        /**
-         * Helper method for defining associations.
-         * This method is not a part of Sequelize lifecycle.
-         * The `models/index` file will call this method automatically.
-         */
-        static associate(models) {
-            // define association here
+const mongoose = require('mongoose');
 
-        }
-    }
-    Role.init({
-        code: DataTypes.STRING,
-        value: DataTypes.STRING,
+const roleSchema = new mongoose.Schema({
+    code: String,
+    value: String,
+});
 
-    }, {
-        sequelize,
-        modelName: 'Role',
-    });
-    return Role;
+roleSchema.statics.associate = function(models) {
+    // define association here
+    // Note: In Mongoose, associations are not typically defined at the schema level like in Sequelize
+    // Consider defining associations directly in your business logic or middleware.
 };
+
+const RoleModel = mongoose.model('Role', roleSchema);
+
+module.exports = RoleModel;

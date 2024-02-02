@@ -199,22 +199,22 @@ const ManagePost = () => {
                     </tr>
                     : posts?.map(item => (
                         <tr key={item.id} className="border px-1">
-                            <td className="border text-center">{item?.overviews?.code}</td>
+                            <td className="border text-center">{item?.overviewId?.code}</td>
                             <td className="border p-1  text-center flex items-center justify-center">
-                                <img className="w-[100px] h-[100px] object-cover" src={JSON.parse(item.images.image)?.[0]} alt='anh bai dang'/>
+                                <img className="w-[100px] h-[100px] object-cover" src={item?.imageId && JSON.parse(item?.imageId?.[0]?.image)} alt='anh bai dang'/>
                             </td>
                             <td className="border text-center">{item?.title}</td>
-                            <td className="border text-center">{item?.attributes?.price}</td>
-                            <td className="border text-center">{item?.overviews?.created}</td>
-                            <td className="border text-center">{item?.overviews?.expire}</td>
+                            <td className="border text-center">{item?.attributeId?.price}</td>
+                            <td className="border text-center">{item?.overviewId?.created}</td>
+                            <td className="border text-center">{item?.overviewId?.expire}</td>
                             <td className="border text-center">
-                                {checkStatus(item?.overviews?.expire?.split(' ')[3] || item?.overviews?.expire) ? 'Đang hoạt động' : 'Đã hết hạn'}
+                                {checkStatus(item?.overviewId?.expire?.split(' ')[3] || item?.overviewId?.expire) ? 'Đang hoạt động' : 'Đã hết hạn'}
                             </td>
                             <td className="border text-center">{item?.status ==='checked'? 'Đã duyệt': 'Chờ duyệt' }</td>
                             <td className="border text-center">{item?.star}</td>
                             <td className="border text-center">
                                 <div className="flex gap-2 justify-evenly items-center">
-                                    {checkStatus(item?.overviews?.expire?.split(' ')[3] || item?.overviews?.expire) &&
+                                    {checkStatus(item?.overviewId?.expire?.split(' ')[3] || item?.overviewId?.expire) &&
                                     <Button text="Sửa" bgColor="bg-secondary1" textColor='text-white'
                                         onClick={() => {
                                             dispatch(actions.editData(item))
@@ -224,7 +224,7 @@ const ManagePost = () => {
                                     }
                                     <Button text="Xóa" bgColor="bg-secondary2" textColor='text-white'
                                         onClick={() => {
-                                            handleDeletePost(item.id)
+                                            handleDeletePost(item._id)
                                         }}
                                     />
                                     <Button text="Xem" bgColor="bg-yellow-500" textColor='text-white'

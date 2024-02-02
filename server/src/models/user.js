@@ -1,36 +1,24 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      User.hasMany(models.Post, { foreignKey: 'userId', as: 'users' });
-      User.belongsTo(models.Role, { targetKey: 'code', foreignKey: 'roleCode', as: 'roleData' })
-      User.belongsTo(models.Position, { targetKey: 'code', foreignKey: 'positionCode', as: 'positionData' })
-      // User.hasMany(models.PostLike, { foreignKey: 'userId', as: 'users' });
+const mongoose = require('mongoose');
 
-    }
-  }
-  User.init({
-    name: DataTypes.STRING,
-    password: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    zalo: DataTypes.STRING,
-    fbUrl: DataTypes.STRING,
-    roleCode: DataTypes.STRING,
-    positionCode: DataTypes.STRING,
-    avatar: DataTypes.STRING,
+const userSchema = new mongoose.Schema({
+  name: String,
+  password: String,
+  phone: String,
+  zalo: String,
+  fbUrl: String,
+  roleCode: String,
+  positionCode: String,
+  avatar: String,
+  positionData: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Position'  // Thay đổi thành tên model của Position
+  },
+  roleData: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Role'  // Thay đổi thành tên model của Role
+  },
+});
 
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
-  return User;
-};
+const UserModel = mongoose.model('User', userSchema);
+
+export default UserModel;

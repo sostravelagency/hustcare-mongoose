@@ -1,29 +1,14 @@
-const { Sequelize } = require('sequelize');
-
-// // Option 1: Passing a connection URI
-// const sequelize = new Sequelize('sqlite::memory:') // Example for sqlite
-// const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname') // Example for postgres
-
-// // Option 2: Passing parameters separately (sqlite)
-// const sequelize = new Sequelize({
-//   dialect: 'sqlite',
-//   storage: 'path/to/database.sqlite'
-// });
-
-// Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('hustcare', 'root', null, {
-  host: 'localhost',
-  dialect: 'mysql',
-  logging: false,
-});
+const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-      } catch (error) {
-        console.error('Unable to connect to the database:', error);
-      }
-}
+        await mongoose.connect('mongodb://localhost:27017/hustcare', {
+          useUnifiedTopology: true,
+        });
+        console.log('Kết nối MongoDB thành công.');
+    } catch (error) {
+        console.error('Không thể kết nối tới cơ sở dữ liệu MongoDB:', error);
+    }
+};
 
-export default connectDB
+export default connectDB;

@@ -4,36 +4,34 @@ import { getPostsLimit, getPostLike } from "../../store/actions/post";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useSearchParams } from "react-router-dom";
 import moment from "moment";
-import Search from "./Search";
 import Search2 from "./Search2";
 
 const List = ({ categoryCode, postId }) => {
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.post);
-  const [listPosts, setListPosts]= useState([])
+  const [listPosts, setListPosts] = useState([])
   const { postLike } = useSelector((state) => state.post);
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  // const { isLoggedIn } = useSelector((state) => state.auth);
   const location = useLocation()
   const listRef = useRef();
   const [searchParams] = useSearchParams();
   const [sort, setSort] = useState(0);
   useEffect(() => {
-    
+
     dispatch(getPostLike());
   }, []);
-
-  useEffect(()=> {
-    if(location.pathname=== "/phong-tro") {
-      setListPosts(posts?.filter(item=> item.categoryCode=== "code123"))
+  console.log(posts)
+  useEffect(() => {
+    if (location.pathname === "/phong-tro") {
+      setListPosts(posts?.filter(item => item?.categoryCode === "code123"))
     }
-    else if(location.pathname=== "/share-phong") {
-      setListPosts(posts?.filter(item=> item.categoryCode=== "code 1234"))
+    else if (location.pathname === "/share-phong") {
+      setListPosts(posts?.filter(item => item?.categoryCode === "code 1234"))
     }
     else {
       setListPosts(posts)
     }
-  }, [posts, location.pathname])
-
+  }, [location.pathname])
   useEffect(() => {
     let params = [];
     for (let entry of searchParams.entries()) {
@@ -96,18 +94,20 @@ const List = ({ categoryCode, postId }) => {
             listPosts
               ?.filter((post) => post.status === "checked")
               ?.map((item) => {
+              console.log(item?.imageId ? JSON.parse(item?.imageId[0].image) : "")
+
                 return (
                   <Item
-                    key={item?.id}
+                    key={item?._id}
                     address={item?.address}
-                    attributes={item?.attributes}
-                    overviews={item?.overviews}
+                    attributes={item?.attributeId}
+                    overviews={item?.overviewId}
                     description={JSON.parse(item?.description)}
-                    images={JSON.parse(item?.images?.image)}
+                    images={item?.imageId ? JSON.parse(item?.imageId[0].image): []}
                     star={+item?.star}
                     title={item?.title}
-                    user={item?.users}
-                    id={item?.id}
+                    user={item?.userId}
+                    id={item?._id}
                     postLike={postLike}
                   />
                 );

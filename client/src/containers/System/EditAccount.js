@@ -66,7 +66,7 @@ const EditAccount = () => {
                 setInvalidFields={setInvalidFields}
                 label='Mã thành viên'  
                 readOnly
-                value={userData?.id?.match(/\d/g).join('')?.slice(0, 6) || ''}
+                value={userData?._id?.match(/\d/g).join('')?.slice(0, 6) || ''}
             />
             <InputReadOnly
                 invalidFields={invalidFields}

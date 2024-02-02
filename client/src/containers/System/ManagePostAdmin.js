@@ -22,7 +22,7 @@ const ManagePostAdmin = () => {
   const [isView, setIsView] = useState(false);
   const [payload, setPayload] = useState({
     title: "",
-    id: "",
+    _id: "",
     expire: "",
     oid: "",
     status: "",
@@ -72,7 +72,7 @@ const ManagePostAdmin = () => {
 
   const handleComfirmEdit = async () => {
     console.log(payload);
-    const response = await apiUpdatePostAdmin(payload);
+    const response = await apiUpdatePostAdmin({...payload, id: payload._id});
     if (response.data.err === 0) setUpdate((prev) => !prev);
     setIsEdit(false);
   };
@@ -117,12 +117,12 @@ const ManagePostAdmin = () => {
             ? true
             : statusAc === 1
             ? checkStatus(
-                item?.overviews?.expire?.split(" ")[3] ||
-                  item?.overviews?.expire
+                item?.overviewId?.expire?.split(" ")[3] ||
+                  item?.overviewId?.expire
               )
             : !checkStatus(
-                item?.overviews?.expire?.split(" ")[3] ||
-                  item?.overviews?.expire
+                item?.overviewId?.expire?.split(" ")[3] ||
+                  item?.overviewId?.expire
               ))
         );
       })
@@ -306,14 +306,14 @@ const ManagePostAdmin = () => {
             </thead>
             <tbody>
               {postFilter?.rows?.map((item, index) => (
-                <tr key={item.id} className="border">
+                <tr key={item._id} className="border">
                   <td className="p-4 border">{index + 1}</td>
                   <td className="p-4 border">
                     <span>#</span>
-                    <span>{item.id?.match(/\d/g)?.slice(0, 6)}</span>
+                    <span>{item._id?.match(/\d/g)?.slice(0, 6)}</span>
                   </td>
                   <td className="p-4 border">
-                    {isEdit === item.id ? (
+                    {isEdit === item._id ? (
                       <input
                         type="text"
                         className="w-full p-2 bg-gray-200 rounded-md"
@@ -330,17 +330,17 @@ const ManagePostAdmin = () => {
                     )}
                   </td>
                   <td className="p-4 border">
-                    {item.users.name || "Tài khoản tác giả đã xóa"}
+                    {item?.userId?.name || "Tài khoản tác giả đã xóa"}
                   </td>
                   <td className="p-4 border">
-                    {item?.overviews.created?.split(" ")[3]}
+                    {item?.overviewId?.created?.split(" ")[3]}
                   </td>
                   <td className="p-4 border">
-                    {isEdit === item.id ? (
+                    {isEdit === item._id ? (
                       <input
                         type="date"
                         className="w-full p-2 bg-gray-200 rounded-md"
-                        value={payload.expire}
+                        value={payload?.expire}
                         onChange={(e) =>
                           setPayload((prev) => ({
                             ...prev,
@@ -350,16 +350,16 @@ const ManagePostAdmin = () => {
                       />
                     ) : (
                       <span>
-                        {item.overviews.expire?.split(" ")[3] ||
-                          item.overviews.expire}
+                        {item.overviewId?.expire?.split(" ")[3] ||
+                          item.overviewId?.expire}
                       </span>
                     )}
                     {/* <span>{item.overviews.expire.split(' ')[3] || item.overviews.expire }</span> */}
                   </td>
                   <td className="p-4 text-center border">
                     {checkStatus(
-                      item?.overviews?.expire?.split(" ")[3] ||
-                        item?.overviews?.expire
+                      item?.overviewId?.expire?.split(" ")[3] ||
+                        item?.overviewId?.expire
                     ) ? (
                       <AiOutlineEye size={24} />
                     ) : (
@@ -367,7 +367,7 @@ const ManagePostAdmin = () => {
                     )}
                   </td>
                   <td className="p-4 border">
-                    {isEdit === item.id ? (
+                    {isEdit === item._id ? (
                       <select
                         type="date"
                         className="w-full p-2 bg-gray-200 rounded-md"
@@ -393,7 +393,7 @@ const ManagePostAdmin = () => {
                     )}
                   </td>
                   <td className="p-4 border">
-                    {isEdit === item.id ? (
+                    {isEdit === item._id ? (
                       <select
                         type="date"
                         className="w-full p-2 bg-gray-200 rounded-md"
@@ -417,7 +417,7 @@ const ManagePostAdmin = () => {
                     )}
                   </td>
                   <td className="flex items-center justify-center p-4 ">
-                    {isEdit === item.id ? (
+                    {isEdit === item._id ? (
                       <button
                         type="button"
                         className="px-4 text-blue-500 border-none hover:underline hover:text-orange-600"
@@ -430,14 +430,14 @@ const ManagePostAdmin = () => {
                         type="button"
                         className="px-4 text-blue-500 border-none hover:underline hover:text-orange-600"
                         onClick={() => {
-                          setIsEdit(item.id);
+                          setIsEdit(item._id);
                           setPayload({
-                            id: item.id,
-                            expire: item.overviews.expire?.split(" ")[3],
-                            title: item.title,
-                            oid: item.overviews.id,
-                            status: item.status,
-                            star: item.star,
+                            _id: item._id,
+                            expire: item.overviewId?.expire?.split(" ")[3],
+                            title: item?.title,
+                            oid: item?.overviewId?._id,
+                            status: item?.status,
+                            star: item?.star,
                           });
                         }}
                       >
@@ -449,7 +449,7 @@ const ManagePostAdmin = () => {
                       className="px-4 text-blue-500 border-none hover:underline hover:text-orange-600"
                       onClick={() => {
                         setIsShowModal(true);
-                        setSelected({ id: item.id, title: item.title });
+                        setSelected({ id: item._id, title: item.title });
                       }}
                     >
                       Xóa

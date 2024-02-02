@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { List, ListItem, Typography, Rating, Avatar } from '@mui/material';
 import instance from '../../axiosConfig';
 import { makeStyles } from '@mui/styles';
+import moment from "moment"
 
 const useStyles = makeStyles((theme) => ({
     reviewContainer: {
@@ -48,17 +49,17 @@ const ReviewList = ({ postId, change }) => {
                     <div key={review.id} className={classes.reviewContainer}>
                         <ListItem style={{alignItems: "center", padding: 0}}>
                             <div className={classes.userContainer}>
-                                {review.user && (
-                                    <Avatar src={review.user.avatar} alt={review.user.name} className={classes.avatar} />
+                                {review.userId && (
+                                    <Avatar src={review.userId.avatar} alt={review.userId.name} className={classes.avatar} />
                                 )}
-                                <Typography variant="h6">{review.user ? review.user.name : 'Anonymous'}</Typography>
+                                <Typography variant="h6">{review.userId ? review.userId.name : 'Anonymous'}</Typography>
                             </div>
                             {/* <Rating name="read-only" value={review.rating} readOnly /> */}
                             <Typography variant="h6">{review.titlePost}</Typography>
                         </ListItem>
                         <Typography>{review.content}</Typography>
                         <Typography variant="caption" color="textSecondary">
-                            {new Date(review.createdAt).toLocaleDateString()}
+                            {moment(review.createdAt).format("DD-MM-YYYY")}
                         </Typography>
                     </div>
                 ))}

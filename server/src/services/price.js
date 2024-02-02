@@ -1,21 +1,18 @@
-import db from '../models'
+import PriceModel from '../models/price';
 
-//GET ALL Price
-export const getPricesService = () => {
-    return new Promise( async(resolve, reject) => {
-        try {
-            let response = await db.Price.findAll({
-                raw:true,
-                attributes: ['code','value']
-            })
-            resolve({
-                err: response ? 0 : 1,
-                msg: response ? 'oke' : 'fail to get all price',
-                response
-            })
-        } catch (error) {
-            reject(error);
-        }
-    })
-}
+export const getPricesService = async () => {
+    try {
+        const response = await PriceModel.find({
+            raw: true,
+            attributes: ['code', 'value']
+        });
 
+        return {
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Fail to get all prices',
+            response
+        };
+    } catch (error) {
+        throw error;
+    }
+};

@@ -1,26 +1,16 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Price extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+const mongoose = require('mongoose');
 
-    }
-  }
-  Price.init({
-    code: DataTypes.STRING,
-    value: DataTypes.STRING,
+const priceSchema = new mongoose.Schema({
+    code: String,
+    value: String,
+});
 
-  }, {
-    sequelize,
-    modelName: 'Price',
-  });
-  return Price;
+priceSchema.statics.associate = function(models) {
+    // define association here
+    // Note: In Mongoose, associations are not typically defined at the schema level like in Sequelize
+    // Consider defining associations directly in your business logic or middleware.
 };
+
+const PriceModel = mongoose.model('Price', priceSchema);
+
+module.exports = PriceModel;

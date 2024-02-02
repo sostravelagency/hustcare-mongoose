@@ -31,7 +31,7 @@ const WriteReview = ({ postId, setChange }) => {
             setTitlePost("")
             setContent("")
             swal("Thông báo", "Gủi đánh giá thành công", "success")
-            .then(()=> setChange(prev=> !prev))
+                .then(() => setChange(prev => !prev))
             // Optionally, you can update the local state with the new review
             // to avoid making an additional request to get the updated reviews.
         } catch (error) {

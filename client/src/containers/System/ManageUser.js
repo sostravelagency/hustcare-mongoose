@@ -28,8 +28,8 @@ const ManageUser = () => {
   const fetchUsers = async (query) => {
     const response = await apiGetUsers(query);
     if (response.data.err === 0) {
-      const userCheck = response.data.response.rows.filter(
-        (item) => item.roleData?.code !== "R1"
+      const userCheck = response.data.response.filter(
+        (item) => item.roleCode !== "R1"
       );
       // console.log(userCheck)
       setUsers(userCheck);
@@ -42,6 +42,7 @@ const ManageUser = () => {
   }, [isShowModal, isEdit, userData]);
   useEffect(() => {
     setUserFilter(users);
+    console.log(users)
   }, [users]);
   useEffect(() => {
     let params = [];
@@ -253,7 +254,7 @@ const ManageUser = () => {
                   <td className="p-4 border">{index + 1}</td>
                   <td className="p-4 border">
                     <span>#</span>
-                    <span>{item.id?.match(/\d/g)?.slice(0, 6)}</span>
+                    <span>{item._id?.match(/\d/g)?.slice(0, 6)}</span>
                   </td>
                   <td className="p-4 border">
                     {isEdit === item.id ? (
@@ -273,7 +274,7 @@ const ManageUser = () => {
                     )}
                   </td>
                   <td className="p-4 border">{item.phone}</td>
-                  <td className="p-4 border">{item.users.length}</td>
+                  <td className="p-4 border">{item?.users?.length || 0}</td>
                   <td className="p-4 border">
                     {isEdit === item.id ? (
                       <select

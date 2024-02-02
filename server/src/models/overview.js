@@ -1,30 +1,20 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Overview extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      Overview.hasOne(models.Post, {foreignKey: 'overviewId', as: 'overviews'});
-    }
-  }
-  Overview.init({
-    code: DataTypes.STRING,
-    area: DataTypes.STRING,
-    type: DataTypes.STRING,
-    target: DataTypes.STRING,
-    bonus: DataTypes.STRING,
-    created: DataTypes.STRING,
-    expire: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'Overview',
-  });
-  return Overview;
+const mongoose = require('mongoose');
+
+const overviewSchema = new mongoose.Schema({
+    code: String,
+    area: String,
+    type: String,
+    target: String,
+    bonus: String,
+    created: String,
+    expire: String,
+});
+
+overviewSchema.statics.associate = function(models) {
+    // define association here
+    // Note: In Mongoose, associations are not typically defined at the schema level like in Sequelize
 };
+
+const OverviewModel = mongoose.model('Overview', overviewSchema);
+
+module.exports = OverviewModel;

@@ -1,29 +1,16 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class PostLike extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      // PostLike.belongsTo(models.User, {foreignKey: 'userId',targetKey: 'id',as: 'users'})
-      PostLike.belongsTo(models.Post, {foreignKey: 'postId',targetKey: 'id',as: 'posts'})
+const mongoose = require('mongoose');
 
+const postLikeSchema = new mongoose.Schema({
+    userId: String,
+    postId: String,
+});
 
-    }
-  }
-  PostLike.init({
-    userId: DataTypes.STRING,
-    postId: DataTypes.STRING,
-
-  }, {
-    sequelize,
-    modelName: 'PostLike',
-  });
-  return PostLike;
+postLikeSchema.statics.associate = function(models) {
+    // define association here
+    // Note: In Mongoose, associations are not typically defined at the schema level like in Sequelize
+    // Consider defining associations directly in your business logic or middleware.
 };
+
+const PostLikeModel = mongoose.model('PostLike', postLikeSchema);
+
+module.exports = PostLikeModel;

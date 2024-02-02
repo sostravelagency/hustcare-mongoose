@@ -1,30 +1,20 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Feedback extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      Feedback.belongsTo(models.Post, { foreignKey: 'postId', as: 'post' });
-      Feedback.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+const mongoose = require('mongoose');
+const timestampPlugin = require('mongoose-timestamp');
 
-    }
-  }
-  Feedback.init({
-    userId: DataTypes.STRING,
-    postId: DataTypes.STRING,
-    titlePost: DataTypes.STRING,
-    rating: DataTypes.INTEGER,
-    content: DataTypes.TEXT,
+const feedbackSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    postId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post"
+    },
+    titlePost: String,
+    rating: Number,
+    content: String,
+});
+feedbackSchema.plugin(timestampPlugin)
+const FeedbackModel = mongoose.model('Feedback', feedbackSchema);
 
-  }, {
-    sequelize,
-    modelName: 'Feedback',
-  });
-  return Feedback;
-};
+module.exports = FeedbackModel;
